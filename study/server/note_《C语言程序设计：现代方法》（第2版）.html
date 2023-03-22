@@ -1,0 +1,672 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>note_《C语言程序设计：现代方法》（第2版）</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="739fb9d4-cfac-4a3a-88f0-f3bcc6607151" class="page sans"><header><h1 class="page-title">note_《C语言程序设计：现代方法》（第2版）</h1></header><div class="page-body"><p id="7430207c-3fc1-4553-a59a-35a4abcc33bd" class="">以下是我学习《C语言程序设计：现代方法》这本书的学习笔记。</p><p id="dbc52564-c8cd-44e4-881b-17ac7961129c" class="">黄国洪Samwee</p><p id="e16d1047-b3c7-4bf7-b047-354b27610116" class="">
+</p><p id="1a1755e6-9574-4ec5-b5d0-b2dd5fc0cd98" class="">封面：</p><figure id="d173b830-9434-4383-9d0e-8d606538c37e" class="image"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled.png"><img style="width:240px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled.png"/></a></figure><p id="adea4c40-0e71-44c4-9cd5-2579bf764f0f" class="">课后习题参考答案：</p><figure id="a1247fbc-7a81-444c-9a36-533d5b0b3fd6"><a href="http://knking.com/books/c2/answers/index.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Answers to Selected Exercises in C Programming: A Modern Approach - Second Edition</div><div class="bookmark-description">Answers to selected exercises in the book C Programming: A Modern Approach, Second Edition</div></div><div class="bookmark-href"><img src="http://knking.com/favicon.ico" class="icon bookmark-icon"/>http://knking.com/books/c2/answers/index.html</div></div></a></figure><h1 id="9c762bfa-860c-4e04-8e6d-02ebf0737f68" class="">1 C语言概述</h1><h1 id="206e2109-5b38-4a7c-8142-5977a235374a" class="">2 C语言基本概念</h1><p id="9ea36f29-5365-46d7-84c0-dd668504ef78" class="">每一章后面的练习题、编程题都动手做</p><h1 id="aa03866d-73d7-4a68-a319-bd0ced48c532" class="">3 格式化输入/输出</h1><p id="81897c43-1e2d-4011-973f-f9043e3cf4b9" class="">一些关于printf ， scanf等的输入输出，以及相关规范</p><h1 id="32a01198-288d-4cf3-88fb-fcb6d2f543d6" class="">4 表达式</h1><p id="9792fa84-45d0-46c3-bad8-5cc50c0f853c" class="">讲了一些++,- -,*,/,%等的使用和计算，不是很难</p><h1 id="3b33a5d4-b5e4-4728-971e-ac414933e549" class="">5 选择语句</h1><p id="bd1a4f1d-2013-48ed-8fb3-9543c93005fd" class="">5.1 逻辑表达式</p><p id="ee052a1d-374f-4ea7-bf2b-0b3771e57513" class="">5.2 if 语句</p><p id="d26eac28-8cfe-4fd3-ae85-5f3fa28c1dc5" class="">然而，C语言遵循的规则是else 子句应该属于离它最近的且还未和其他else 匹配的if 语句。</p><p id="4ff88bb3-14d1-4817-9410-7ffbd26fe4f7" class="">5.3 switch 语句</p><h1 id="18bc17f4-7196-4239-9034-b1b3779e214b" class="">6 循环</h1><p id="70524e45-fa8b-466d-9c0e-f8e416f800aa" class="">6.1 while语句</p><p id="89b89df5-5dbe-41e7-afea-137f80014442" class="">6.2 do语句，</p><p id="e9d79d6d-3fa7-4274-9030-c280cfe0ad96" class="">两种语句的区别是，do 语句的循环体至少要执行一次，而while 语句在控制表达式初始为0 时会完全跳过循环体。</p><p id="e89d8f6b-23f3-4b3d-a0e2-ab2834c2c3d2" class="">6.3 for语句</p><p id="c82d7cec-78f4-4e1c-acbf-2e2edae1fad1" class="">6.4 退出循环</p><p id="88309541-12cf-4137-99de-ee8a057c7407" class="">break, continue, goto</p><p id="9ed7a811-a382-4870-a26f-090591d31837" class="">break 语句的目标是包含该语句的循环结束之后的那一点，而continue 语句的目标是循环结束之前 的那一点。goto 语句则可以跳转到函数中任何有标号的语句处。</p><figure id="c42bb33a-a789-416d-85fb-583c84640764" class="image" style="text-align:left"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%201.png"><img style="width:336px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%201.png"/></a></figure><p id="62ed3a07-dceb-4b46-ac5e-970235fe92a9" class="">6.5 空语句</p><h1 id="f7adf47a-e821-4d2a-8799-f5bd13568738" class="">7 基本类型</h1><p id="78aa2595-5d30-4281-9fa2-17762725af2e" class="">7.1 整数类型</p><p id="7e522aa6-0d9e-4394-ab79-47610ae6cfdd" class="">7.2 浮点类型</p><p id="d300d41d-45c2-4461-a3b6-301f33348f96" class="">7.3 字符类型</p><p id="e6269b29-7d48-44de-a229-df5efbe8b078" class="">7.4 类型转换  (int)f 表示把f 的值转换成int 类型后的结果</p><p id="dc9610c7-6ba3-448e-91f5-871d3769fe69" class="">7.5 类型定义</p><h1 id="520addc7-082f-4016-a5dd-bd1412c28a06" class="">8 数组</h1><p id="c19f4a94-3592-44d5-a21a-0dd85bccead9" class="">8.1 一维数组</p><p id="0528b374-a7b1-4999-be63-4b5f195cf183" class="">8.2 多维数组</p><h1 id="b719ab1e-7dfb-4388-bb53-58d7e728bddc" class="">9 函数</h1><p id="70118730-a5b1-424f-8901-d657aee7a5b9" class="">9.1 函数的定义和调用</p><p id="e750ae5f-bb1f-4b8c-9254-8e1ce8165615" class="">9.2 函数声明</p><p id="c18a6752-b5f4-4570-a4d2-36931dc0b122" class="">9.3 实际参数</p><p id="a26054c8-3914-4ccc-b5e0-8d7b17762d8f" class="">9.4 return语句</p><p id="3b6aad12-c9d0-44ed-94e2-d4eeb9ef5eba" class="">9.5 程序终止<div class="indented"><p id="e9324b45-9f65-4277-bdd1-90f8a7040095" class="">exit函数</p></div></p><p id="58c591a4-0bde-4d49-a1ad-320838a64c3d" class="">9.6 递归<div class="indented"><p id="d582cd93-e8fa-4ba0-bcb7-7c460040f8e6" class="">快速排序算法</p></div></p><h1 id="45bc56b8-99f9-45d8-ad62-f7d44c33bcdf" class="">10 程序结构</h1><p id="67f97306-d338-4167-867a-8ce240687967" class="">讨论一个程序包含多个函数时所产生的几个问题</p><p id="8c5c605c-a476-4b91-8d7e-dff2f65c0f71" class="">10.1 局部变量</p><p id="88887ac2-e41b-48d2-bee2-dae3a97f5ffe" class="">10.2 外部变量</p><p id="1eb1f2e7-2062-43c6-a60e-01fdc35c40b8" class="">10.3 程序块</p><p id="2efe7670-bb98-42f9-95fc-e6b5bfe39dc6" class="">10.4 作用域</p><p id="a55f4314-8193-4106-b068-b98b9dc3069e" class="">10.5 构建C程序</p><h1 id="363fad2d-6e59-4f35-ae24-ed60bec6e821" class="">11 指针</h1><p id="419f4dd0-0d78-47e8-a392-38fb7396187f" class="">本章将从内存地址及其与指针变量的关系入手（11.1节），然后11.2节介绍取地址运算符和间接寻址运算符，11.3节是有关指针赋值的内容，11.4节说明给函数传递指针的方法，而11.5节则讨论从函数返回指针。</p><p id="1f40e38c-759f-433f-b169-af3ac5633e66" class="">11.1 指针变量</p><p id="a9df83a8-792e-4718-8ff0-1887ac5eac5b" class="">11.2 取地址运算符和间接寻址运算符</p><figure id="9062d1fc-0fc1-45ef-a02b-555a7f618c3a" class="image" style="text-align:left"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%202.png"><img style="width:384px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%202.png"/></a></figure><p id="6558b2da-f3be-4a70-8f81-a797d7e36678" class="">11.3 指针赋值</p><p id="774a2d18-8b79-4241-bcdb-ac7ea842b4d2" class="">11.4 指针作为参数</p><p id="808894a1-b676-4543-bc1a-6bb3d725db17" class="">11.5 指针作为返回值</p><p id="33740640-030a-4135-b399-7cb81bbdc275" class="">可以使用单词const 来表明函数不会改变指针参数所指向的对象。</p><figure id="12471118-56a9-42cc-8362-904c005b8efb" class="image"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%203.png"><img style="width:1136px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%203.png"/></a></figure><p id="2da461c8-22dc-4207-a122-17fd362e70ed" class="">(e)、(f) 和 (i) 是合法的。</p><p id="298bc7f2-99b0-4ef3-86bb-fe80e32e9dbe" class="">(a) 是非法的，因为<code>p</code>它是一个指向整数的指针并且<strong> </strong><strong><code>i</code></strong><strong>是一个整数</strong>。</p><p id="3db8aa58-7006-479d-aabd-639efda11506" class="">(b) 是非法的，<strong>因为</strong><strong><code>*p</code></strong><strong>它是一个整数</strong>并且<code>&amp;i</code> 是一个指向整数的指针。</p><p id="c16c7ebc-fe92-414a-8974-8fa1f99a0e5e" class="">(c) 是非法的，因为<code>&amp;p</code>是一个指向整数的指针，并且<code>q</code>是一个指向整数的指针。</p><p id="e0540aba-ff87-4c12-a0f6-2966cb5bf694" class="">(d) 由于与 (c) 类似的原因是非法的。</p><p id="c993ab65-c9a7-4702-942f-4d037c89f86b" class="">(g) 是非法的，因为 <code>p</code>它是一个指向整数的指针并且<strong><code>*q</code></strong><strong>是一个整数</strong>。</p><p id="619c381b-7bbb-4a1e-a863-c33595015c5f" class="">(h) 是非法的，<strong>因为</strong><strong><code>*p</code></strong><strong> 它是一个整数</strong>并且<code>q</code>是一个指向整数的指针。</p><p id="fdc00de0-71b5-4913-8e0f-d269f425bbab" class="">（c）(d)我不太懂，因为根据（f）来看，指针应该是可以赋值给指针的。</p><h1 id="e5cf0302-551a-456a-be0c-a75fb5fec15f" class="">12 指针和数组</h1><p id="9be651ab-f69c-4168-ad38-1012beacfdd0" class="">12.1 指针的算术运算</p><figure id="2df9a550-d58e-4e72-87a8-055654fb6ee5" class="image" style="text-align:left"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%204.png"><img style="width:432px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%204.png"/></a></figure><p id="7dcd8262-813d-4a4e-9a1e-533286837d08" class="">12.2 指针用于数组处理</p><p id="58623889-6a47-47d5-8dfc-7808be8e2c7c" class="">12.3 用数组名作为指针</p><p id="e9103af7-9945-4d42-9ea9-ffdacec91eaa" class="">通常情况下，a + i 等同于&amp;a[i] （两者都表示指向数组a 中元素i 的指针），</p><p id="099c8bae-318e-49f2-93f6-9dd8451514c0" class="">12.4 指针和多维数组</p><p id="7562c752-cfe1-4525-9296-a6e07b49c854" class="">12.5 C99中的指针和变长数组</p><h1 id="de21539a-54e4-4c06-84dc-504dae1bdea6" class="">13 字符串</h1><p id="b3c4555a-4357-403b-9e2b-76be0bd7f46c" class="">13.1 字符串字面量</p><p id="cdf67c71-bd76-4d6b-b476-dfeddea89a80" class="">13.2 字符串变量</p><p id="637bfd9f-4278-423d-a196-1ac67f0d6fe4" class="">字符串变量就是那些格子</p><p id="f8396e42-599b-4df6-8f28-a649a7fec3a0" class="">13.3 字符串的读和写</p><p id="de83d588-4f52-40b6-8278-b7fd51f51371" class="">13.4 访问字符串中的字符</p><p id="88d39ce3-2bb6-4c93-a814-df342d6a76ad" class="">13.5 使用C语言的字符串库<div class="indented"><p id="1f777725-06a1-47b2-a881-49f48c2ba842" class="">1 strcpy函数 字符串复制</p><p id="0422e20e-4cd3-48cd-92ac-964d5af3d961" class="">2 strlen函数 求字符串长度</p><p id="54cb73fd-fa8d-45f5-ad12-c03047fc7e37" class="">3 strcat函数 字符串拼接</p><p id="3ff2db39-5394-4fb7-b7a5-95a9fd359225" class="">4 strcmp函数 字符串比较</p></div></p><p id="ad255774-edb8-4fb2-8172-ad027d41fd1d" class="">13.6 字符串惯用法</p><p id="be5accee-71ab-4cd9-8e62-ec1641ea7e76" class="">13.7 字符串数组</p><figure id="254ae07f-ccab-42e6-985d-32abdb87d419" class="image" style="text-align:left"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%205.png"><img style="width:336px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%205.png"/></a></figure><figure id="5246801f-d525-4e0c-b3ae-af882d27fb6b" class="image" style="text-align:left"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%206.png"><img style="width:288px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%206.png"/></a></figure><h1 id="aa8d98c6-9105-4096-960b-4a31c0eb40ea" class="">14 预处理器</h1><p id="e2336364-c79a-4e51-bb4b-779ada317df5" class="">14.1 预处理器的工作原理</p><p id="00914673-2d11-4b36-befe-deb72dbcd0f6" class="">14.2 预处理指令</p><p id="392b79ae-4a8f-4f53-b391-e08a6ea34718" class="">14.3 宏定义</p><p id="8677e9af-bc38-4f5b-ac0e-07b42c967e6b" class="">14.4 条件编译</p><p id="a03949e0-7bc5-4183-865e-eccb38910e4e" class="">14.5 其他命令</p><h1 id="bab1b734-5f04-4a04-b934-e14d4100f745" class="">15 编写大型程序</h1><p id="34e9554c-b61b-4d66-9373-48f3ff86ed75" class="">15.1 源文件</p><p id="c207a623-b382-435e-98b0-740fa03a1159" class="">15.2 头文件</p><p id="4bf31a28-e704-4cde-abb6-64c2f41c0490" class="">15.3 把程序划分成多个文件</p><p id="22f04079-ff85-47a3-9301-34cba5830835" class="">15.4 构建多文件程序<div class="indented"><p id="ce60b26f-6b71-4db8-a708-8adbeafa0f12" class="">1 makefile</p></div></p><h1 id="5a9dea4d-d6a9-49aa-858b-ad7c03aaa023" class="">16 结构、联合和枚举</h1><p id="690f4ab8-97c9-49f4-a166-f15c82afc96a" class=""><strong>结构</strong>是可能具有不同类型的值（成员）的集合。</p><p id="b04e450f-7c98-4c7f-a434-81a7215bcfa3" class=""><strong>联合</strong>的成员共享同一存储空间。</p><p id="eabd6b6c-2290-4d09-a364-6402f7b09f36" class=""><strong>枚举</strong>是一种整数类型，它的值由程序员来命名。</p><p id="b5533ef9-6d24-455e-adaa-3f546abf6cb2" class="">16.1 结构变量</p><p id="593585b4-1c16-4c6e-ba38-9b640820737d" class="">16.2 结构类型</p><p id="6ac3d2ea-47a0-4ef0-8f85-5ac4ffd9c768" class="">16.3 嵌套的数组和结构</p><p id="c645e1d4-a63e-4460-890a-26fae8c7f071" class="">16.4 联合</p><p id="740622bb-08eb-4223-a422-4df56ca37d78" class="">16.5 枚举</p><p id="ae42a9a6-356d-4280-a8ba-3d003037d3af" class="">以扑克牌四种花色为例，就很好理解</p><h1 id="2c48614d-3537-431c-a7f2-7103e044d6ad" class="">17 指针的高级应用</h1><p id="6d983685-481b-47eb-817f-35ab046d3ba9" class="">17.1 动态存储分配<div class="indented"><p id="b4d115e7-d8cf-405d-901e-f4ccc7ef9693" class="">17.1.1　内存分配函数</p><p id="172c828f-1865-4407-936a-72b244264c80" class="">malloc 函数——分配内存块，但是不对内存块进行初始化。
+calloc 函数——分配内存块，并且对内存块进行清零。
+realloc 函数——调整先前分配的内存块大小。</p><p id="d50f3480-ad24-4822-ae0f-363e9296d6c3" class="">17.1.2　空指针</p></div></p><p id="4b4f1c2f-3f97-4889-aa25-8c81843b59a7" class="">17.2 动态分配字符串</p><p id="200365fa-3dad-46f2-a1a1-d1cd5b3e4972" class="">17.3 动态分配数组</p><p id="db0d1052-3264-4e4f-985f-3bd4a9f99f33" class="">17.4 释放存储空间<div class="indented"><p id="4f295de6-79ab-4ab3-81da-01a42070d941" class="">1 free函数</p><p id="c7461b77-e54d-4f5a-9e40-679d19652a43" class="">2 “悬空指针”问题</p><p id="43e1f1ba-ed64-40e8-8784-9b5c064c5547" class="">虽然free 函数允许收回不再需要的内存，但是使用此函数会导致一个新的问题：悬空指针 （dangling pointer）。调用free(p) 函数会释放p 指向的内存块，但是不会改变p 本身。如果忘记了p不再指向有效内存块，混乱可能随即而来</p></div></p><p id="03cecf4a-39c0-4aa7-94a8-b0e31201c69f" class="">17.5 链表<div class="indented"><p id="c767dfe3-a5aa-49ee-a5b9-006835c2d59a" class="">1 声明结点类型</p><p id="f6ef1d9b-47d4-4d8b-9945-8d9d7658a79f" class="">2 创建结点</p><p id="b0c5fbf5-ab8f-42b9-8aeb-df5da569254a" class="">3 -&gt;运算符</p><p id="4e23836b-a4ba-4af7-a7b9-f90a199e62ed" class="">4 在链表的开始处插入结点</p><p id="1181dceb-3ae4-48c8-8d82-38b4e3a9b8e6" class="">5 搜索链表</p><p id="d92febcc-2512-4c0f-bf02-508a1798bd37" class="">6 从链表中删除结点</p><p id="49ae016b-f600-43e8-a7b6-166f3be6c24e" class="">7 有序链表</p></div></p><p id="5a854ded-ded2-4c6d-aab1-35c9dda73e6b" class="">17.6 指向指针的指针</p><p id="354aa6a9-f9ea-4490-a3c8-b47305465954" class="">17.7 指向函数的指针</p><p id="10c7819c-3f0a-479d-b6ff-fed6bc41e962" class="">17.8 受限指针</p><p id="9773fd49-42e9-4d62-a6c4-a88f4f85445f" class="">17.9 灵活数组成员</p><h1 id="9651b76a-32b3-4d15-adf5-14f7e6518fb9" class="">18 声明</h1><p id="e2fbb1dd-d90e-465d-8abd-c1c5d6419392" class="">18.1 声明的语法</p><p id="1d01c3b1-0086-4be3-ae0c-523e490bdcbb" class="">18.2 存储类型</p><p id="cb0cff1a-5457-4748-98aa-da133dbe8118" class="">18.3 类型限定符</p><p id="649a5b9a-9cfb-4261-b010-8910a3e94ed2" class="">C语言中一共有两种类型限定符：const 和volatile 。（ C99还有第三种类型限定符，即restrict ，它只用于指针（受限指针➤17.8节）。）</p><p id="231b0154-93e5-420a-ab6a-bc0a7535c0ba" class="">18.4 声明符</p><p id="fb87230c-d57b-4db1-8993-dcadc20746a0" class="">18.5 初始化式</p><p id="8a0f5ce6-ee44-4bb1-9bba-835570e2b533" class="">18.6 内联函数</p><h1 id="c8d043a9-ef91-4ec9-9d57-07566a8271f7" class="">19 程序设计</h1><p id="8b88b737-ac80-4fc4-8be9-bd4979251780" class="">19.1 模块</p><p id="cc9f6d1d-0531-4d2b-986f-48e1b6eec6bd" class="">19.2 信息隐藏</p><p id="dc61c08a-4430-4938-a7d6-d39e2f82b823" class="">19.3 抽象数据类型</p><p id="9de17fe2-e162-410d-9355-6e241f5b90de" class="">19.4 栈抽象数据类型</p><p id="34313ba4-5d1f-4960-ac1a-d39ebe1e2c1e" class="">19.5 抽象数据类型的设计问题</p><h1 id="fede108e-13fe-4f05-bb90-4594fe0acfca" class="">20 底层程序设计</h1><p id="bfeff2b4-f687-4c63-aa88-49b7385d6b45" class="">20.1 位运算符</p><p id="e9e1bf24-c7f6-4bc9-8bdf-9ed9c3248bcc" class="">20.2 结构中的位域</p><p id="617bad09-f5d5-4a7b-84b8-129476e1220b" class="">20.3 其他底层技术</p><h1 id="5aef481e-cb6a-46c1-bc2c-0909ace727cd" class="">21 标准库</h1><h1 id="e293bdd9-42dd-4c75-becf-b2d2d83f7ab5" class="">22 输入/输出</h1><p id="be19561f-18e8-4ef8-8fe5-05998456f522" class="">22.1 流 stream</p><p id="3641f2e2-89bf-4ad2-898f-7d783f1d8e09" class="">22.2 文件操作</p><p id="7691d92a-74a6-4cb3-ab13-5cf7a9c025dd" class="">22.3 格式化的输入/输出</p><p id="c7629736-b92a-4608-b525-9775d9a5be10" class="">22.4 字符的输入/输出</p><p id="201db036-da34-4a16-8cd2-4015ae637f10" class="">22.5 行的输入/输出</p><p id="9ea37422-43c9-482c-8167-db56f41c1828" class="">22.6 块的输入/输出</p><p id="1d3aa015-b1ff-48d2-aabf-12a49fb6ae84" class="">22.7 文件定位</p><p id="05e83151-c855-47a1-af06-7cdb24dbc027" class="">22.8 字符串的输入/输出</p><figure id="adaee300-42d8-44e3-9878-220c2ee89349" class="image"><a href="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%207.png"><img style="width:240px" src="note_%E3%80%8AC%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%8E%B0%E4%BB%A3%E6%96%B9%E6%B3%95%E3%80%8B%EF%BC%88%E7%AC%AC2%E7%89%88%EF%BC%89%20739fb9d4cfac4a3a88f0f3bcc6607151/Untitled%207.png"/></a></figure><p id="29455c5e-8d70-4144-919c-b00c68dcd895" class="">23章及以后多是罗列一些库、函数之类的，有需要用到再google查询即可，全部罗列出来也没法记。</p><h1 id="ebfde2d2-2fde-43aa-b58f-8d06181305bb" class="">读后感想</h1><p id="6603a805-6bae-4a44-b0b5-a4fdf7448abd" class="">优点：这本书还是挺不错的，外国人写书的思维还是要更好一些，娓娓道来，充分考虑新手认知新事物的顺序，非常值得推荐。</p><p id="bbc94dcc-1ec9-410f-ac3f-59cd9ef39d59" class="">缺点：这本书确实很厚，看到后面人很疲惫。</p></div></article></body></html>

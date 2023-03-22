@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>note_Grokking Algorithms《算法图解》</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="710ef532-23bb-4991-a96b-3195a0b9f168" class="page sans"><header><h1 class="page-title">note_Grokking Algorithms《算法图解》</h1></header><div class="page-body"><p id="28278aae-e546-43ce-a039-d270cd6d9676" class="">这是我（Samwee黄国洪）在阅读《算法图解》这本书时顺手写的读书笔记，写得比较乱，估计也只有我自己回头复习的时候看出来在写啥。</p><p id="7cda9249-62f2-46a7-87de-a89ab84c0ea4" class="">但这本书确实简单有趣，而且篇幅很短，想看的不妨去翻翻原书，很推荐。</p><p id="a856357f-e3e0-4a3b-97e2-06f3bea66215" class="">看完厚厚的《C语言程序设计：现代方法》再来看这种薄薄的书，简直如沐春风。</p><h1 id="a02c7e7a-b648-4922-b336-8562a57aacc8" class="">0 封面</h1><figure id="b8a9b86f-7f99-42d9-a770-4b705979438c" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled.png"><img style="width:240px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled.png"/></a></figure><h1 id="29c7ce4f-9e18-4171-8680-7815959c3962" class="">1 算法简介</h1><p id="c22ce82b-9748-4a26-8ce4-b195444ed6a7" class="">1.2 二分查找最多只需要log2 n步，好理解吧</p><p id="0019bf45-df49-4c7e-bad5-8605c24487e8" class="">1.3 大O表示法</p><p id="e79e2010-9b87-43a6-ab1e-fd59346f0a77" class="">也很好理解</p><figure id="efeefce0-ef3b-476b-848d-a75529b9c900" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%201.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%201.png"/></a></figure><h1 id="01f6d8f3-d973-41d4-af5d-27c8b01fb794" class="">2 选择排序</h1><p id="b9ca2879-6a2c-4bc9-9b6f-3c7365aaf999" class="">2.1 内存的工作原理</p><p id="80db444b-b586-414a-86c1-5eb5625b31b1" class="">2.2 数组和链表<div class="indented"><p id="1bafaa4d-f4fa-4b5f-b1e0-7b670a982e33" class="">数组的话，就像你与朋友去看电影，找到地方就坐后又来了一位朋友，但原来坐的地方没有空位置，只得再找一个可坐下所有人的地方。</p><p id="e5dbbf1d-3e90-4fde-a99d-9c808eac080f" class="">但链表，链表中的元素可存储在内存的任何地方。像寻宝游戏一样</p><p id="f6bf8eac-0ff3-4970-9d18-9729e70715f6" class="">也就是说链表可以分开坐，好理解吧</p><p id="e636fb76-afb2-4b36-8b1e-1c5ea8a64328" class="">那数组的优势又是什么呢？</p><figure id="7632a5db-7d51-4bf6-ae75-8157512a5ed1" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%202.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%202.png"/></a></figure><p id="22f9f62b-3675-4af8-b0d6-c4e9ba99cd83" class="">就是需要随机地读取元素时，数组的效率很高，因为可迅速找到数组的任何元素。</p><figure id="f9c46fa1-b7b9-430d-8066-96fbe609f721" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%203.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%203.png"/></a></figure></div></p><p id="bc62026b-abd7-4574-b916-2dd74c7a2b24" class="">2.3 选择排序</p><figure id="2f59a620-4b79-47e8-b6fa-5e294a32e2ee" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%204.png"><img style="width:1095px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%204.png"/></a></figure><p id="31380735-3e69-42ed-a918-1c1e5d27b401" class="">我觉得选择排序就是傻傻慢慢的排序方法，但也很符合人的直觉。</p><h1 id="725c3d1d-bd29-4b4f-9180-f9c6aac00a74" class="">3 递归</h1><p id="a4497827-4cef-498f-b76f-1513db7b74f6" class="">3.1 递归<div class="indented"><p id="9cb36e3f-e583-43f9-be12-e3e8a0fb884d" class="">用人话说就是，在需要实现循环的时候，让函数调用它自己。那这样有什么好处呢？</p><p id="02c070d8-2499-4a0e-8f0d-d95b4b72a998" class="">书中原话：递归只是让解决方案更清晰，并没有性能上的优势。</p><p id="4444e29a-e188-4272-8980-60e54651f0a9" class="">也就是说，更容易理解，这样子而已。</p></div></p><p id="d6ca4b7c-97b8-4b1f-9433-ef2a84e096d6" class="">3.3 栈</p><p id="312f89c3-a761-4c70-baf7-c32b2438ecbc" class="">只有一个口，上入上出</p><h1 id="5c23aab2-a5ff-40a2-838b-8f1d46a14477" class="">4 快速排序</h1><p id="fb472daf-0982-4bd6-893c-3cdd42df510a" class="">4.1 divide and conquer,D&amp;C<div class="indented"><p id="341a1711-095a-4555-9a2e-dfee383528dc" class="">需要理解基线条件</p></div></p><p id="036b45e1-a87b-42ca-96fb-7ce232a2ace0" class="">4.2 快速排序<div class="indented"><p id="6abf0e67-ea3e-4c7b-b4fa-ec2fc632fda8" class="">最佳情况也是平均情况。只要你每次都随机地选择一个数组元素作为基准值，快速排序的平均运行时间就将为O(n log n)。快速排序是最快的排序算法之一，也是D&amp;C典范。</p></div></p><h1 id="240b4784-aa2e-4935-b50c-067622c5f86e" class="">5 散列表 hash table</h1><figure id="f505a8e4-20fb-4e22-a08d-371a9c58a793" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%205.png"><img style="width:240px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%205.png"/></a></figure><figure id="0a19814e-598d-4a73-989d-3b13b9638ee6" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%206.png"><img style="width:288px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%206.png"/></a></figure><figure id="65c70362-b684-4e70-bd5c-7f896a9c77d3" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%207.png"><img style="width:384px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%207.png"/></a></figure><p id="a43ea776-220c-4e4c-bfa2-729b83dadc6b" class="">5.4 性能<div class="indented"><p id="8f7ffbfc-dde9-4f96-9ed1-a28b7b9e93ca" class="">较小的装填因子<div class="indented"><p id="19add7ab-e0ef-4299-bb37-29887ef2cfd1" class="">一旦填装因子超过0.7，就该调整散列表的长度。</p></div></p><p id="d0422812-4f69-4002-9d90-cff4421b41c6" class="">良好的散列函数</p></div></p><h1 id="8f9e3ef8-baf7-4795-9d05-956e43e62f23" class="">6 广度优先搜索 breadth-first search，BFS</h1><p id="91638ec9-5755-42dc-8a55-325e90377118" class="">6.1 6.2 图</p><p id="0e3934d7-fcb1-4798-a3a9-675888d3b030" class="">6.3 广度优先搜索<div class="indented"><p id="3ee01f40-af13-4571-9848-19650c5e2083" class="">1 查找最短路径</p><figure id="5d6313a0-4a5b-4ae7-833e-d67ae055dd77" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%208.png"><img style="width:528px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%208.png"/></a></figure><p id="6283e5f2-d027-488a-bdd3-4f847391ab60" class="">广度优先搜索用来找最短路径</p><p id="7c38cd17-0f69-4b4c-8c4f-2f4bfa12908e" class="">2 队列 queue</p><figure id="3b3e1552-2525-42db-8bf9-2d0ef37f1c13" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%209.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%209.png"/></a></figure><p id="77a5b44c-d282-4b18-98bf-8efa66e51958" class="">6.4 实现图</p><p id="7e87f57d-c495-4c8f-b326-c10c0f11c2d7" class="">6.5 实现算法</p></div></p><h1 id="3a6edc65-d312-4e24-82f9-3b6fe285a3b1" class="">7 狄克斯特拉算法</h1><figure id="3cc19fae-ca09-47d2-823f-7bd7d8faf204" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2010.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2010.png"/></a></figure><p id="181a5478-4e05-4557-814f-111b0d633275" class="">因此，不能将狄克斯特拉算法用于包含负权边的图。在包含负权边的图中，要找出最短路径，可使用另一种算法——贝尔曼-福德算法（Bellman-Fordalgorithm）。本书不介绍这种算法</p><h1 id="cd7c30d1-dcfe-452c-abc4-81a485cd5a34" class="">8 贪婪算法</h1><p id="fcd7fe72-b322-4557-8b98-f208d4240e6a" class="">8.1 教室调度问题</p><p id="4821d8c9-9899-413c-8656-e842b98fefae" class="">8.2 背包问题<div class="indented"><p id="5afdaa26-90f9-49a2-8e67-b320d55dbf36" class="">讲小偷怎么才能往背包装最多东西的</p></div></p><p id="ef911d11-e3cf-4ca2-a3b4-eec3fdbdfecd" class="">8.3 集合覆盖问题<div class="indented"><p id="320bf10e-687e-475c-b066-7c1e6aade3be" class="">讲广播电台如何覆盖50个州的</p></div></p><p id="280aee0e-c2c9-4eb9-8312-bf1bc6a5b79b" class="">8.4 NP完全问题<div class="indented"><p id="aa6ef4d2-6d8a-4004-94f4-867d456f889c" class="">8.4.1 旅行商问题详解</p><p id="f2047892-66d2-4df4-bd25-d30151dc0e47" class="">旅行商问题和集合覆盖问题有一些共同之处：你需要计算所有的解，并从中选出最小/最短的那个。这两个问题都属于NP完全问题。</p><figure id="cf006d9c-fbae-404f-931f-b884bf25e4c7" class="image" style="text-align:center"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2011.png"><img style="width:480px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2011.png"/></a></figure><p id="20aec3df-4329-474a-8f92-8ef89d3ea054" class="">8.4.2 如何识别NP 完全问题</p><figure id="81f30fca-5f4a-44ce-9197-c1c0905d4919" class="image" style="text-align:center"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2012.png"><img style="width:576px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2012.png"/></a></figure></div></p><figure id="6f76cdce-ef23-4429-9f0c-f1f6bafaf1ec" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2013.png"><img style="width:576px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2013.png"/></a></figure><h1 id="712fd755-3ad2-4690-aff7-eabec68d13a5" class="">9 动态规划</h1><p id="922bf301-0c71-4db3-845d-da0bfdf9b85b" class="">9.1 - 9.2 背包问题</p><p id="e6f0dc56-6d6b-404c-8f49-80725fb414c9" class="">动态规划功能强大，它能够解决子问题并使用这些答案来解决大问题。但仅当每个子问题都是离散的，即不依赖于其他子问题时，动态规划才管用。</p><p id="6bf6c84e-8cd5-4ef2-a221-5318fb30787b" class="">9.3 最长公共子串</p><figure id="f4a64c64-7c4b-4f07-8069-2f43ad310309" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2014.png"><img style="width:336px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2014.png"/></a></figure><p id="1d841dec-c091-4016-ae29-aa08123d532e" class="">区别于 最长公共子序列</p><figure id="afc6e427-cba0-46b2-977f-14be4d181e9f" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2015.png"><img style="width:432px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2015.png"/></a></figure><p id="60b6513c-54f1-4391-99eb-223f3343e9d5" class="">应用场景</p><figure id="0a104989-fce8-4b6e-bf0c-f76e3ecb4c76" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2016.png"><img style="width:576px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2016.png"/></a></figure><h1 id="671ebe8a-3202-49b3-9d58-464b1d29902f" class="">10 K最近邻算法（k-nearest neighbours，KNN）</h1><p id="895a1ed4-2017-46ea-bec6-7b9fd4368a4c" class="">10.1 橙子还是柚子？</p><figure id="785cd631-2446-4b6b-9134-8ad74369477d" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2017.png"><img style="width:576px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2017.png"/></a></figure><p id="4c088fe1-4af2-4abd-9490-f4457f4dbf15" class="">10.2 创建推荐系统<div class="indented"><p id="8a774e57-c5d2-464c-9dff-9937c2cc5de4" class="">1 特征抽取</p><p id="9d2ac897-8808-4f96-b1a4-722e9c7a1a7c" class="">2 回归 regression</p><figure id="06097243-a628-4325-bfb4-df574a812657" class="image" style="text-align:center"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2018.png"><img style="width:624px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2018.png"/></a></figure><p id="8fbe5a3f-ab4f-4022-81f0-87f19512ad5a" class="">3 挑选合适的特征</p></div></p><p id="507f722e-0004-4df6-9393-fce454f8b409" class="">10.3 机器学习简介</p><figure id="47928455-13f8-47b0-a17b-b6ef17f8e871" class="image"><a href="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2019.png"><img style="width:576px" src="note_Grokking%20Algorithms%E3%80%8A%E7%AE%97%E6%B3%95%E5%9B%BE%E8%A7%A3%E3%80%8B%20710ef53223bb4991a96b3195a0b9f168/Untitled%2019.png"/></a></figure><h1 id="b1b7f5a7-2de3-4620-90f9-400aa5766cc8" class="">11 接下来如何做</h1><p id="1e1b9d0b-4aad-4834-9f6c-e2ab0356d8a6" class="">11.1 树</p><p id="fa9cfa38-cd91-4e02-9df1-e1b74e696c0a" class="">二叉查找树 binary search tree</p><p id="1f8fa808-c9a5-4787-8d2b-98b8e96a5480" class="">11.2 反向索引</p><p id="9e5d3b20-7dec-4ee8-a4dd-fc043ee48dc6" class="">反向索引（inverted index），常用于创建搜索引擎。</p><p id="1b6d9377-6dd5-4182-8b51-df643a5f0972" class="">11.3 傅里叶变换</p><p id="3eab4bb7-ba15-4374-8a2b-28d4641e5ba5" class="">11.4 并行算法</p><p id="fcfd7c3a-8074-4774-9345-7f974d4e5f98" class="">11.5 MapReduce</p><p id="051cdcdf-2cea-4c44-bed7-669120a13743" class="">MapReduce是一种流行的分布式算法</p><p id="d59ee581-586f-4821-9e73-8ba4a100d9a2" class="">11.6 布隆过滤器和HyperLogLog</p><p id="a125e078-c717-4eea-af04-84c5bcb1f933" class="">11.7 SHA 算法</p><p id="b095cf2c-165a-4b09-9e90-8d595583a3da" class="">安全散列算法（secure hash algorithm，SHA）函数。给定一个字符串，SHA返回其散列值。</p><p id="46a38747-c567-4737-94c5-8f43fd1a1c17" class="">11.8 局部敏感的散列算法</p><p id="a763724e-36a6-454d-8bcf-3463b903e70c" class="">11.9 Diffie-Hellman 密钥交换</p><p id="bab6edb0-dcfa-4d7e-8473-4fbd339ac220" class="">11.10 线性规划</p></div></article></body></html>
