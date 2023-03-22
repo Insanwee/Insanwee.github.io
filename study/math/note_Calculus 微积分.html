@@ -1,0 +1,669 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>note_Calculus 微积分</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="42d045d8-e03a-459b-ae4e-54c796851416" class="page sans"><header><h1 class="page-title">note_Calculus 微积分</h1></header><div class="page-body"><p id="c5037884-9945-43cb-89a6-50ccee449e57" class="">本文是我在考完研的时候写的，并发表在知乎上，有获得不少的点赞。现在回看显得稚嫩，但也非常真诚。我本想做更多改动，但想想也没太大必要，毕竟在这个人博客上很难真的对考研的朋友提供到帮助，就权当发在此留作纪念吧。在此备注一下，<strong>此文仅适用于以考研为目的而学习微积分</strong>。</p><p id="6e6664bd-e9ab-40b5-86d4-f503efa6caf5" class="">黄国洪Samwee</p><h2 id="59a1fc54-f9b0-4d5c-a8b7-cddfbd1c8ab8" class="">0 <strong>推荐书籍</strong></h2><p id="cdc5b030-a66e-4b4c-a857-f3215798afd0" class="">直接挑重点讲</p><h3 id="550e9ce0-27f9-439c-9049-2fced9f48841" class=""><strong>课本</strong></h3><figure id="b80909c2-9aa2-4911-a100-8af54414f160" class="image"><a href="https://pic1.zhimg.com/80/v2-fcd1d28009ac9cbf386cbeed58976cce_720w.webp?source=d16d100b"><img style="width:336px" src="https://pic1.zhimg.com/80/v2-fcd1d28009ac9cbf386cbeed58976cce_720w.webp?source=d16d100b"/></a></figure><h3 id="bb346087-96eb-4637-bd5a-0ec14008d3b1" class=""><strong>全书</strong></h3><p id="bbe824a8-b5ea-48ba-ac65-ad5c135bb8fa" class="">全书要有一本，市面上老师写的都挺好，不用太在意。</p><p id="0af1f72e-058f-48fd-b493-65b380d60476" class="">但李永乐的全书不是李永乐写的，只是挂他的名，他的精华在他的辅导讲义那里，所以不推荐他的全书。</p><p id="853f7373-8f49-4cd9-a96c-f29582c194f6" class="">我用的全书是李正元的，粉色的那本。这本有点难度，你不用跟我一样，挑自己喜欢的就行。</p><figure id="16920f23-0d06-4743-b82e-706f1b035df1" class="image"><a href="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled.png"><img style="width:182px" src="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled.png"/></a></figure><h3 id="0ef67717-fa35-46ea-b4e6-650c0d7eb587" class=""><strong>高数辅导讲义</strong></h3><p id="1d118b80-deec-45fd-974e-6d7111d90112" class="">高数的辅导讲义要有一本。目的：用来跟视频课的，你跟谁的课你就买谁的。我用的是李林的。你不用跟我一样，挑自己喜欢的就行。汤家凤张宇武忠祥写的都挺好的。</p><figure id="d7807986-fd3d-45b0-99c8-4202fb8c36e9" class="image"><a href="https://pic1.zhimg.com/80/v2-d97262ae93490315e41001227257a358_720w.webp?source=d16d100b"><img style="width:288px" src="https://pic1.zhimg.com/80/v2-d97262ae93490315e41001227257a358_720w.webp?source=d16d100b"/></a></figure><h3 id="3d947470-b122-4a65-aa66-0f298cee693f" class=""><strong>习题册</strong></h3><p id="f5d13e5c-4312-45a9-8951-1394b8976f2b" class="">习题册，市面上你随便挑一本就行，选你自己喜欢的。我用的是李林的880。对于习题册，关键不是挑谁的，关键是你有没有好好去做题。最后再带一句，如果你买了1800然后感觉不适合你，建议你换一本。</p><figure id="8f4cf124-869d-4b6a-b823-d98d6f16df6a" class="image"><a href="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%201.png"><img style="width:384px" src="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%201.png"/></a></figure><h3 id="b5a8e4b1-e7b8-4c02-a0fb-73c019b5ea71" class=""><strong>真题</strong></h3><p id="0d070e59-68ae-4dca-b44a-b14d9b805f0c" class="">真题重要吗？重要，但真题是不是那么重要？不是。</p><figure id="63b580be-754b-43ad-84bd-fa013e7cc783" class="image"><a href="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%202.png"><img style="width:225px" src="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%202.png"/></a></figure><p id="53ebaea6-017b-4619-b29f-3fb9fe4c64b1" class="">原因出在哪里？<strong>为什么有些人真题刷了好几遍，上了考场还是啥也不会。</strong></p><p id="5d9d7ba0-4e5d-4799-8846-446acfda97cf" class="">因为真题本身就在你整一年学习过程中，<strong>被辅导机构的老师挑出来讲了</strong>，只不过你不知道而已。</p><p id="dee56277-57c3-4001-91c1-ad5084a96eef" class="">你买的辅导讲义、全书、你上的视频课、你的习题册，<strong>里面全是真题或者真题衍生的影子。</strong></p><p id="2da06d89-96ac-4c58-b58a-1f37ef844e7d" class="">所以你做真题，一方面觉得简单，另一方面可能有些同学觉得不简单，便反复地刷，一遍不行刷两遍，将真题奉为圣经。</p><p id="c70fbb0b-af9f-4a1a-9b04-8ae06c2058d2" class=""><strong>真题不是圣经！真题不是救命稻草！不要拿着它反复刷！</strong></p><p id="297ae4a1-c4b4-46ca-9f35-a0b099826671" class="">你要知道，你在考场上，老师给你发的那张题，<strong>是你从来没有做过的，</strong>里面的很多题目，甚至是你第一次看见。</p><p id="bff46a8b-0429-4db1-86b6-bbc053362914" class="">所以，<strong>重视高质量的模拟题吧朋友。</strong>真题当然要学，但是你把他视为全部、视为救命稻草，那你就走远了。</p><p id="7014ca9a-95e2-4377-b93b-2d486200f5c7" class=""><strong>因为你根本适应不了一张完全陌生的题，你在重复套路题的池水了浸泡了太久。</strong></p><h3 id="0ab8c8b4-977f-4370-b930-8534b224716b" class=""><strong>模拟卷</strong></h3><p id="b9aa5374-0772-4448-aff1-520cb6a5b541" class="">李林6套卷，李林4套卷，合工大超越5套卷</p><p id="33c9bd99-f3c9-484b-8368-964f654c858f" class="">合工大卷子要12月份才出，所以你如果进度快的话，可以买前两年（2021/2022考研）的合工大超越做做，合工大的卷子的价值很多人不懂，在那里一遍一遍的刷零几年一几年的真题。没用的。</p><p id="aa4d8161-e564-4be0-a614-a88b8280eeee" class=""><strong>合工大超越卷子的价值就在于，剥离了相当多的套路，更加侧重地考察你对知识在原理上的理解和应用。</strong></p><p id="b8aeb02c-fb1a-4e91-bb42-873cd4632c20" class="">因为你开始做的时候你会发现：<strong>&quot;这个题看起来那么简单，为什么我就是做不出来呢？&quot;</strong></p><p id="b6b3d7b7-c39e-418f-828c-7843838e1f88" class="">至于其他老师的卷子，什么张宇汤家凤李永乐的，有空你就做，我相信你到最后大概率是没空的。</p><figure id="31d04867-cb14-4a01-bb8e-edf02569d7fe" class="image"><a href="https://picx.zhimg.com/80/v2-0b135ca14fb96da8d38f849f8e1227fa_720w.webp?source=d16d100b"><img style="width:240px" src="https://picx.zhimg.com/80/v2-0b135ca14fb96da8d38f849f8e1227fa_720w.webp?source=d16d100b"/></a></figure><h2 id="cfe160dd-459b-4eef-842c-b5e2e9f3e8ed" class="">1 <strong>基本思想</strong></h2><h3 id="ca73674e-5910-4fa7-b8b4-9d68ebe30525" class="">1.1 <strong>从底层开始，从原理开始，从课本开始，</strong></h3><p id="cfbf5b5a-c05e-4423-b3b2-7a8b07b81037" class="">而不是从辅导老师开始，不是从辅导老师照着课本编写的辅导讲义复习全书开始。</p><p id="86cfb412-5ec1-435d-a72e-f3008cd7775e" class="">无论基础怎样，一定要从高数课本和线性代数课本开始学起。课本讲的东西都特别<strong>纯粹</strong>，</p><p id="78c1cfec-4cec-493f-9da2-b60cd91a0853" class="">你可以拿课本和任何一个辅导老师写的辅导讲义进行对比，<strong>那感觉完全不同</strong>。</p><p id="504f3168-88f5-410c-bce3-22545a2871cb" class="">课本的题肯定是不会作为原题来出成真题的，但并不妨碍它给我们<strong>把这个知识点的来龙去脉讲明白</strong>，前期我们慢慢来都没关系，课本一定要自己给它看明白了，千万不要有任何盲点，遇到想不懂的地方<strong>不要跳过，要想办法解决掉</strong>。</p><figure id="41e92377-d864-454a-a015-6cbcee75360f" class="image"><a href="https://picx.zhimg.com/80/v2-84357a52bd472f3b1942e676a2cd2d11_720w.webp?source=d16d100b"><img src="https://picx.zhimg.com/80/v2-84357a52bd472f3b1942e676a2cd2d11_720w.webp?source=d16d100b"/></a></figure><p id="7c123eaa-e68d-464b-b3e5-d51acbc8f78f" class="">举个例子，像这些公式定理，辅导书上都是直接罗列给你，我们看的时候感觉好像会了，甚至在自己的笔记上重新抄了一遍 。 但其实我们根本不知道怎么用 。</p><p id="c256de64-c106-46fb-966b-6677f1ead0cc" class="">但其实每一个知识点都不是凭空产生的，了解课本是如何推导出来的，只有知道它是怎么来的，我们才能更好的运用它</p><p id="11655915-0e0f-41e6-a5b4-32105f0486db" class="">这个时候，就要结合自己实际情况实事求是来解决了。</p><p id="2956e89c-4b6d-46e7-b78b-b55e49b41848" class="">有些朋友基础好，他看课本能学个八九不离十，遇到想不懂的地方有条件可以请教老师、和同学研友一起讨论，那是最好不过的了。</p><p id="95619acb-e21f-45a1-9bbc-7209affced39" class="">有些朋友基础差，那就拿起视频课来学，不可否认，视频课确实也有它的价值所在。在学视频课的时候大可不必像我第一次考研一样笨笨的一字一句记下来，根本就是浪费时间。要明确我们的目的，目的是为了帮我们学懂对应的知识点，这样就可以了，<strong>不必太纠结于形式。</strong></p><p id="4838aa89-aa53-4280-bf15-d3769cd26c04" class="">至于跟哪位老师，大家挑自己喜欢的就行。不必跟风或者跟着那些所谓经验贴去选老师，我第一年就查了很多经验贴，最终选定了一致好评的汤家凤和李永乐，结果呢，不多说，可能是我太菜了吧，怪不了老师。</p><p id="66c5ebc5-289c-42a0-92ea-d4f5648d01ff" class="">我教你一个方法，那些在你的候选列表里的老师，你分别去挑他一个视频来看，然后你自己感受一下他在这一个视频里面<strong>有没有帮你把你想知道的某个点讲透，有没有从底层原理上帮你弄明白</strong>，你的感受如何，</p><p id="cd67a5e7-f4b3-4ce4-86e7-08dc23e6f134" class="">然后在课本对应的知识点挑一两道最基础的题来做一做，做会了做懂了的话，ok，这个老师就是适合你的。</p><h3 id="f907e869-42b4-4d9b-83a7-0854c31e752a" class="">1.2 <strong>学会永久解决某一个类型的题！</strong></h3><p id="8558be92-4445-4817-a52f-a48ad113d328" class=""><strong>“永久解决！”</strong>这真的是一个很重要很重要的做题思想。适用于后期你掌握完所有知识点、开始做真题模拟题以后，</p><p id="0ecc8a7d-45cc-4a73-b77b-b55c11024ffb" class=""><strong>一定要抱着对于错题后面所代表的某一个类型题的永久解决的思维。</strong></p><p id="0d8b6a16-1b56-4777-a7ed-246d8024a097" class="">比如说，我做了几张卷子，反常积分老是拿不到分，老是莫名其妙的做错，那你就应该在你的笔记本上单独记一页“永久解决反常积分”，然后写上你的反思，</p><p id="8f2a6cd1-19e7-4c8a-aeda-53ac63a54e2a" class="">你在课本上学到的原理，你在辅导讲义上学到的拓展部分，<strong>用大白话（粗话都没关系）写最好，这样印象最深刻。</strong>然后能把这类题常见的坑人套路总结出来的话，那就再好不过了。</p><figure id="17eef7e7-9ecd-4f61-9ea0-ee42c1866d93" class="image"><a href="https://picx.zhimg.com/80/v2-c2df1819534c188e80ca9407a641e965_720w.webp?source=d16d100b"><img src="https://picx.zhimg.com/80/v2-c2df1819534c188e80ca9407a641e965_720w.webp?source=d16d100b"/></a></figure><p id="c22f7c74-91b3-4ed8-972f-15cc5a5bc47b" class="">能用自己的话表达， 甚至能自问自答时候 ，说明你真的在思考这个知识是从哪里来的， 这个知识要解决什么样的问题，说明你真的掌握了这个知识点了。&lt;br&gt; 不用把总结写的多么漂亮 ，哪怕把粗话写进去 都没有关系， 只要你能从原理上去理解这个知识就可以了</p><p id="d6da5efe-b5c7-46eb-89e5-3fa3754282ec" class="">这样，以后无论什么试卷，只要出到反常积分，<strong>你便有自信：这种题，你变神变鬼，我永远都不会做错。</strong></p><p id="0299ee47-ab69-4503-9588-fea95d74f60e" class="">总结：不要着急，<strong>一定要从底层学起，将原理吃透</strong>，这样以后无论你遇到多复杂的题，可能题目要你证明微积分的某些问题，你看完问题都不知道他问的什么卵，辅导机构老师教的套路回忆起来根本找不到对应的套路。但是只要你从题目给的微积分式子的原理开始想突破口，可能题目就会被你一点一点一步一步地解开来。</p><h2 id="06695ea8-4e17-4ba7-b1d6-49c94aa6f9b8" class="">2 <strong>方法论</strong></h2><p id="230790bc-1097-41c3-ab20-ffded0ac6c8a" class="">似乎每个辅导老师都在振振有词地告诉你要分成“基础”、“强化”、“冲刺”三个学习阶段，似乎每一个学长学姐的经验贴都在告诉你ta分成这三个阶段以及再每个阶段做了啥做了啥，</p><p id="213e7a23-8619-456f-a455-7e8b36543571" class="">但是你有没有自己独立思考过，这种分法<strong>合理吗</strong>，</p><p id="8abb3c20-9bbf-4152-bd50-e861459a553f" class="">或者说，<strong>是不是适用于每个人？</strong></p><p id="e0adc86a-5889-4a0b-996c-54309f469fee" class="">是不是适用于你自己？</p><p id="955da010-9926-4bf4-9a5b-9cdffd3cbc80" class="">这种分法，有什么优点？<strong>有什么缺点？</strong></p><p id="02628852-ce35-4bb5-a802-86438204bdf8" class="">其实，这种分法都是教育机构的老师搞出来的形式，因为他要卖课，这么长长一年下来，比方说高数，我总不能二三月讲极限，四五月将微分，九月十月再来讲积分吧，那学生不得急死。</p><p id="5f389ed2-8196-4a1a-8461-37e3730ca2b1" class="">但是三四五六月一下全讲完，那下半年机构岂不是喝西北风？</p><p id="1afa6147-71ae-4c27-898f-ddf2737ecc6d" class="">于是，分成三个阶段，每个阶段有所侧重，对机构老师好，对学生也看起来不错，<strong>听起来</strong>很完美，双赢。</p><p id="55f4b0ff-9ac3-411a-97e4-689d50ade69d" class="">后来我才发现，其实很多学得很好的人，<strong>他根本不这样分。</strong>而最多最多就分了两个阶段，甚至很多大佬，他就一个阶段，那就是基础阶段。</p><p id="37c2cf1d-958c-41c8-bc1d-08bbc737e293" class="">没错，一味地细化、赶进度，<strong>你看起来得到很多，其实你什么也没有得到。</strong></p><p id="66688fdb-60d8-473e-a8cb-1a02e026b3e0" class="">但是别人解决了一个题，便是<strong>永远地</strong>解决这个题所代表的那一种类型题，往后出到这种类型的题，必定能得到这个题的分数。</p><p id="d314c884-c4f8-4719-9df5-025ab7689b92" class="">越优秀的人，越不会拘泥于这种形式上的东西，他就将知识点学完，每个知识点学完找对应的题来练一练，然后全部学完以后就真题，再模拟题，然后就上考场。</p><p id="2f3949a6-5c80-4769-bfd0-9701945686a7" class=""><strong>整个过程都是一个带着知识点去寻找题的过程</strong>，</p><p id="668242a4-4430-4807-9f57-805828d8def9" class=""><strong>而不是“我在某个月份要完成多少多少题、进度要赶到哪里”。</strong></p><p id="ee088193-e898-481e-a5af-167433683315" class="">再赶进度？</p><p id="fb758919-57ee-47e6-a77b-27f15079b9f9" class="">那到了具体的操作上，应该怎么弄比较科学呢？</p><p id="bcd131ce-6006-4148-b8fb-d203b7064ae1" class="">那些一上来教你方法的，多少带点不靠谱，毕竟每个人的基础不一样，没有什么能一招鲜吃遍所有人。</p><p id="258d0f4f-f24d-4bc9-a583-7eaddd578801" class="">但我想，数学本质上要考什么，却是无论你基础好与不好都要面对的事情。你可以拿真题来看一下，真题出到16、18、20、22这几个年份，数学试题往往跳脱套路化，转而出一些你不常看到的，看起来奇奇怪怪的题出来，就是那种<strong>看起来很简单，但你就是做不出来的那种题。</strong></p><p id="6ea0d922-c397-4bd7-9b47-4afd2fc1c143" class="">这个时候，<strong>命题组真正想考的，就是里面的数学思想，或者说实际点，就是数学的原理。</strong></p><p id="d80e5b81-cb3b-4c78-b252-80c0a8708dd4" class="">基于此，无论你从现在一月份开始学，还是三月份、五月份、七月份，你都要有课本，然后你的学习节奏中，一定要有课本的部分。不一定需要从头看到尾，因为可能有些朋友会受不了这个过程。</p><p id="d18dd6be-05d5-4725-bd68-7a35da8d1123" class="">你可以，比方说，在学第一章“极限”的时候，跟着视频课学这一章，再找这一章的习题练一练，练完，然后再翻开课本学一学，<strong>看看课本咋写的，课本又是以一个什么角度来切入、介绍</strong>这个知识点的。</p><p id="f41bde71-3a16-46f0-a20a-eaf9744def82" class="">要带着这样的问题来学这一章：<strong>极限是怎么来的？极限是什么？极限要解决什么样的问题？</strong></p><p id="0af41a90-4b22-4dc0-abf5-c3fb43e6dcee" class="">同样的，再比如学到积分的时候，你要思考：<strong>积分是怎么来的？积分是什么？积分要解决什么样的问题？</strong></p><p id="ad4063f9-1aea-44e8-bb9b-24d518f4f1e7" class="">实际上，是先有的定积分、定积分思想，再抽象出不定积分，不定积分说白了只是一个工具。</p><p id="4cbc0a7f-ac2f-4a1d-b27c-56a609a1667c" class="">但很多朋友学了辅导班的套路，刷了三个月的不定积分，有必要吗？你把一个工具用得烂烂的，考试时命题组出个题，你看不懂要考察的数学原理，工具是不是就白费了？</p><p id="847a76f6-b1a3-4465-8077-57dba19aead3" class="">你买了一把钛合金的扳手，但是让你修汽车，关键还是你得知道这辆车哪里坏了，从哪里开始下手，不是吗？</p><p id="98fee149-b395-4baa-bff2-649ab4d060fa" class=""><strong>各章之间都是存在逻辑的，想清楚它是怎么来的，它是什么，它要解决什么问题。我想，对你后期对知识整体的掌握，会大有裨益。</strong></p><p id="2a251bcd-6727-4598-a113-7dfc5473f04c" class="">想从现在开始的朋友，先课本+视频课+习题，一章一章地学，到暑假的时候，学完一遍高数，进度来说应该还是绰绰有余的。高数学完就学线代，还是一样的道理。</p><p id="4f856654-48ca-47ba-a311-cae5378d92ce" class="">而有很多朋友是从暑假才开始决定要考研的，那时开始也不算晚，但是就要学一章，懂一章。而不是学一章，过一章。那样是没有任何意义的。</p><p id="dec8bef1-9700-49da-9991-40db5b15a775" class="">要带着知识点去找题来做，比方说我开始学了无穷小，我感觉掌握得不咋地，或者说感觉这变化怎么那么多，那就要找无穷小对应的知识点来练习。把它给做透了。</p><figure id="51e7b1f3-c3f6-4791-9d9e-efc40a40b079" class="image"><a href="https://picx.zhimg.com/80/v2-8877d337a56a033c297b19b06301cd5d_720w.webp?source=d16d100b"><img src="https://picx.zhimg.com/80/v2-8877d337a56a033c297b19b06301cd5d_720w.webp?source=d16d100b"/></a></figure><p id="74dbf84b-8173-4235-bfa7-d2a4dbdb21f0" class="">概念题简直是选择题做错的黑洞，错的多了就要从底层开始想起如何去理解。&lt;br&gt;举个例子，多元积分的概念题， 当我们总结完以后再看到这种题，我们还会做错吗？</p><h1 id="a1ab0978-db03-4a46-8ba5-466e0e44e77b" class="">3 推荐老师</h1><p id="8eddea8f-df6b-402d-b496-d058ba67be92" class="">李林</p><figure id="4d9e10f7-8550-4c8b-aa32-27f3687d7450" class="image"><a href="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%203.png"><img style="width:192px" src="note_Calculus%20%E5%BE%AE%E7%A7%AF%E5%88%86%2042d045d8e03a459bae4e54c796851416/Untitled%203.png"/></a></figure><p id="bb819702-4f6c-4b35-abd9-e28d4eb3e463" class="">因为能从原理、从底层讲清楚微积分。</p></div></article></body></html>

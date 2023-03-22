@@ -1,0 +1,674 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>note_Numerrical Analysis 数值分析</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9c6e93b4-f61b-4e1f-8028-ad82e3b87ca3" class="page sans"><header><h1 class="page-title">note_Numerrical Analysis 数值分析</h1></header><div class="page-body"><p id="6fb1a689-d71d-468c-85fa-c745e2ce2ecf" class="">以下是我学习数值分析这门课程的简单的过程记录。</p><p id="2a33aebd-fcc9-46e4-becd-58ccdb98902b" class="">黄国洪Samwee</p><h1 id="7b880783-d6cd-43e1-b0b6-3f24b9ddeec9" class="">0 书籍</h1><p id="15565f8a-44d1-48c9-a006-affb41608cf4" class="">封面：</p><figure id="22129dd5-7305-4090-a658-17c49e503cc6" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled.png"><img style="width:192px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled.png"/></a></figure><p id="3e289652-1368-44a3-92c2-c66fe91acc75" class="">上面这本书写得很糟糕，纯中式（或者说苏联式）的思维，定义、公式先行，不先说明意义和应用场景。无奈我校教学、考试选的是这一版（但我并不推荐阅读这本书）。所以下面的章节我都按照这一版来阐述我的学习心得，关键是从接触新事物应有的认知过程出发来阐述。</p><figure id="a156c83b-d124-423a-9de1-e34b1912cbf1" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%201.png"><img style="width:192px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%201.png"/></a></figure><p id="c8d6c9c1-46f5-413c-a62a-fa73b6c720a6" class="">个人比较推荐这一版。</p><p id="f2e4fa6c-177b-4f42-855d-cb5bac045486" class="">
+</p><p id="a5932c95-f78d-48db-b516-774a3593d970" class="">然后我们先来用非常通俗的话讲讲李这本书，看看各个章节都在讲什么卵</p><p id="729e4e4f-3f50-4c97-a4e9-1e95c7bb94b2" class="">第一章，主要就是说明这门课是要干嘛，然后引入误差及相关概念。</p><p id="3103e488-7061-463a-a6e0-56abf80a8624" class="">第二章，插值法，目的在于：<div class="indented"><p id="99ff3ef8-dd99-42b5-a79a-c149f496fa8e" class="">插值的应用通常反应在两种情景下：</p><p id="6b0add37-7d2f-4cb1-93c3-a79eb4f323e5" class="">（1）数据量太小，需要增加数据量来提升算法的执行效果。比如机器学习、深度学习中的样本如果太少，可以用<a href="https://so.csdn.net/so/search?q=%E6%8F%92%E5%80%BC%E6%B3%95&amp;spm=1001.2101.3001.7020">插值法</a>得到更多的样本值。</p><p id="f3c5921a-2f54-4918-9541-3abafcc7aff9" class="">（2）需要对某个区域的值进行预测。通过插值算法将插值点的值计算出来。</p></div></p><p id="4d809a40-25ed-417f-84fd-a2feecaecd7e" class="">第三章将函数逼近，字面意思，很好理解。这里面有分为离散的和连续的情况，是怎么逼近的。<div class="indented"><p id="901ea56b-9322-4af8-a334-15e0c4ae2d84" class="">范数，第三章讲的范数是<strong>向量的</strong>范数（离散时）和函数的范数（连续时），而第五章讲的范数是<strong>矩阵的</strong>范数，注意做好区分。</p></div></p><p id="7e2c3de0-7d16-4600-bb6f-a367b0aefb6c" class="">第四章，数值积分，基本思想就是一个复杂没法求的积分，我们将它拆成若干个容易求的多项式，当然，这其中有三种拆分-求和的方法，分别是矩形、梯形、辛普森。另外，还有高斯型。</p><p id="9f8caf84-781a-4de3-9788-a21d70dd563c" class="">第五章，解线性方程组的直接解法，很简单</p><p id="6901ba8c-bc0f-4f6a-8221-6af9ba8295f4" class="">第六章，解线性方程组的迭代法<div class="indented"><p id="663bb573-fd41-4ee5-96df-1198c3e7820f" class="">如若使用直接解法通过有限次算术运算来得到方程组的解，会需要大量的存储和计算资源，并且会破坏矩阵本身的系数结构。 另一方面，线性方程组的迭代法则<strong>程序设计简单，适于计算机自动计算的同时有效利用矩阵稀疏性大量减少了内存消耗</strong>。 通过逐步逼近来得到方程近似的解，好的迭代法比直接法具有计算量更小且计算误差容易控制的优点</p><p id="df0f9508-2366-424c-a715-7b54cd1798f8" class="">主要有三种迭代法</p><p id="86dcfede-f5ce-4f43-b2fc-fbc71589dbaf" class="">雅可比</p><p id="27ea2391-39a0-49ad-89c7-37d9fcc9c4cf" class="">高斯-赛德尔</p><p id="bea0a85a-ed06-4aff-9b40-262742608a13" class="">超松弛</p></div></p><p id="352d9f17-8cbe-4620-bfb6-98694e300b68" class="">第七章，解非线性方程组的迭代法<div class="indented"><p id="1acf046e-d6e6-4fa6-80c7-1bfa935be29f" class="">就一个牛顿法</p></div></p><p id="38d03ed2-1b83-4edd-9a4d-a80eb9d2d8de" class="">第八章，幂法和反幂法</p><p id="77ad57a0-0613-412a-bb0b-4c0c4049c911" class="">第九章，常微分方程初值问题数值解法<div class="indented"><p id="a6240995-3817-48f2-8966-312ed08d1bd4" class="">欧拉法</p><p id="7cb783f3-d510-4965-b287-1ab5d27edcc1" class="">梯形法</p><p id="8be90b53-fc65-4c21-9b47-165560df1f20" class="">改进欧拉法</p><p id="666ecce5-d3c1-41b3-986a-f877f6f2d9e9" class="">龙格-库塔法</p><p id="e0a82582-9596-449e-9584-cb9c7ebc310e" class="">
+</p></div></p><h1 id="d61ff7c6-3512-43b2-8035-a43f4c255ce9" class="">1 数值分析与科学计算引论</h1><p id="345676c9-e7b0-480b-8146-a33e93196969" class="">1 首先数学分析这门课的意义是什么？</p><p id="f44bfc04-76dd-4248-b402-442f81617596" class="">研究数值问题的算法，使得复杂不方便求解的数学模型通过近似而简化，从而应用在计算机上。</p><p id="e5dd7fb6-5acb-486d-951d-2aad50e36cb0" class="">2 误差</p><p id="6f4ebf7b-ef1b-476a-99dc-924d1cbec2bc" class="">这里以几道例题做简单介绍即可</p><figure id="7b63e32e-c4e0-4ba5-a4b8-6b89db95ca8f"><a href="https://www.bilibili.com/video/BV13D4y1v7X1/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成1 绝对误差、相对误差与有效数字_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 15664、弹幕量 20、点赞数 221、投硬币枚数 79、收藏人数 608、转发人数 153, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成2  插值法，数值分析期末速成3  函数逼近，数值分析期末速成7  解非线性方程的迭代法，当你查到成绩低到离谱，数值分析期末速成5  解线性方程组的直接解法，数值分析期末速成4  数值积分，数值分析期末速成6  解线性方程组的迭代法 (1)，2-3有效数字及其运算规则，数值分析期末复习，数值分析【题型一】绝对误差，相对误差，绝对误差限，相对误差限，有效数字，公式整理及例题详解</div></div><div class="bookmark-href"><img src="https://www.notion.so//i1.hdslb.com/bfs/archive/d09ecf1ac8a91cc0baac960dd6e49d31c1a69c5f.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV13D4y1v7X1/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i1.hdslb.com/bfs/archive/d09ecf1ac8a91cc0baac960dd6e49d31c1a69c5f.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="dc69ca2a-a4df-404b-8ff1-2d5aea30dcac" class="">笔记：</p><figure id="e81b737e-9d68-458e-bfcb-c34cc1de6580"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21410791&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.43" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21410791&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.43</div></div></a></figure><h1 id="0facb319-e4b9-49ce-ba9f-10f4d83c7a6c" class="">2 插值法</h1><p id="26c1f1cf-5a66-4e1b-9f88-4e7f895ba3f4" class="">1 插值法有什么意义？主要用来干什么？</p><figure id="dd624013-e7fe-48e7-b69b-1e9205895e46"><a href="https://blog.csdn.net/ccleehom/article/details/105557068" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析—我们为什么要对数据插值？（一）_ccleehom的博客-CSDN博客_插值的作用</div><div class="bookmark-description">这篇博客是本人决定投身统计学的开篇，将会是以一个系列存在，记录了本人在学习统计学过程中遇到的一些指标、算法，以本人浅薄的一些见解来尽量用通俗易懂的语言描述各种指标、算法的现实意义及适合的应用场景。由于学习是一个持续性的过程，所以文章发布后随着对知识的深入理解，可能会更正之前文章的一些说法，或者增加一些新的见解，如有不当之处欢迎骚扰！   响应文章的标题，我们为什么要对数据...</div></div><div class="bookmark-href"><img src="https://g.csdnimg.cn/static/logo/favicon32.ico" class="icon bookmark-icon"/>https://blog.csdn.net/ccleehom/article/details/105557068</div></div></a></figure><p id="9101a029-0f8f-4cd7-8766-b7a4526cf22d" class="">2 如果只是需要完成考试，那么通过看这个视频，学会三种插值法即可：</p><figure id="2c8bf9fe-f803-4523-b4c8-8e29ce4e2f42"><a href="https://www.bilibili.com/video/BV1Qv4y1279i/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成2  插值法_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 14519、弹幕量 18、点赞数 264、投硬币枚数 94、收藏人数 470、转发人数 155, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成4  数值积分，数值分析期末速成3  函数逼近，数值分析期末速成1 绝对误差、相对误差与有效数字，数值分析期末速成7  解非线性方程的迭代法，当你查到成绩低到离谱，数值分析期末速成6  解线性方程组的迭代法 (1)，数值分析期末速成8  求矩阵特征值的方法，数值分析期末速成5  解线性方程组的直接解法，讲了半天，一个问题给腿姐干蒙了，数值计算 数值分析6 《最小二乘拟合》 期末不挂科</div></div><div class="bookmark-href"><img src="https://www.notion.so//i1.hdslb.com/bfs/archive/aa69615bd5ea4c8e9131d8e9f87548e4503f8385.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1Qv4y1279i/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i1.hdslb.com/bfs/archive/aa69615bd5ea4c8e9131d8e9f87548e4503f8385.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="b375eadf-4f9e-416c-9bf5-960a7230e2f0" class="">笔记：</p><figure id="7eae3341-a07b-4e02-860e-4a7313fcea42"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21411636&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.41" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21411636&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.41</div></div></a></figure><h1 id="5b84fb7d-3f49-4026-9372-6e8698bd7922" class="">3 函数逼近</h1><p id="33b73b88-a76e-4332-a4b4-72c8585b2b3c" class="">这一章会引入不少概念，书本直接一股脑写出来容易让人一头雾水。</p><p id="f0e14625-2452-4996-a35d-e4d1d689c207" class="">下面分开一个一个讲讲这些概念怎么来的，有什么用，我觉得这样才比较符合接触新事物该有的过程。</p><p id="edd91895-72f7-41cd-b137-75d82cd82002" class="">1 范数，是啥？有什么意义？</p><figure id="1035a6a4-d4fa-4f1c-a4a1-6a0ff613ed54"><a href="https://zhuanlan.zhihu.com/p/26884695" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">如何通俗易懂地解释「范数」？</div><div class="bookmark-description">文章结构：  1. l_p -范数的定义 1.1 l_0 -范数的定义 1.2 l_1 -范数的定义 1.3 l_2 -范数的定义  2. l_1 -范数：正则项与稀疏解 2.1 什么是过拟合问题？ 2.2 正则项是什么？为什么稀疏可以避免过拟合？ 2.3 为什…</div></div><div class="bookmark-href"><img src="https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png" class="icon bookmark-icon"/>https://zhuanlan.zhihu.com/p/26884695</div></div></a></figure><p id="110b2ad1-e3b7-4b8d-b2b7-3f79c9f39741" class="">2 内积，是啥？有什么意义？</p><figure id="db3500b9-89ad-4cea-b213-8cc0d3bb2661"><a href="https://zhuanlan.zhihu.com/p/348308540" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">向量内积外积的几何意义</div><div class="bookmark-description">向量的内积（点乘）定义概括地说，向量的 内积（点乘/数量积）。对两个向量执行点乘运算，就是对这两个向量对应位一一相乘之后求和的操作，如下所示，对于向量a和向量b： a和b的点积公式为： 这里要求一维向量a和…</div></div><div class="bookmark-href"><img src="https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png" class="icon bookmark-icon"/>https://zhuanlan.zhihu.com/p/348308540</div></div></a></figure><p id="09050d37-aa8e-4437-ab1e-ef6359635477" class="">3 Gram矩阵，是啥？有什么意义？<div class="indented"><figure id="39f7ca53-f969-4292-9e0e-9212aa7a2cd0" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%202.png"><img style="width:554px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%202.png"/></a></figure><p id="1b8b12c4-47c4-43db-a311-de75416acade" class=""><strong>格拉姆矩阵用于度量各个维度自己的特性以及各个维度之间的关系。</strong>内积之后得到的多尺度矩阵中，对角线元素提供了不同特征图各自的信息，其余元素提供了不同特征图之间的相关信息。这样一个矩阵，<strong>既能体现出有哪些特征，又能体现出不同特征间的紧密程度。</strong></p></div></p><figure id="f210061d-43a2-4799-ac5a-d64388880b17"><a href="https://zhuanlan.zhihu.com/p/187345192" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">格拉姆矩阵（Gram matrix）详细解读</div><div class="bookmark-description">在开始学习之前推荐大家可以多在FlyAI竞赛服务平台多参加训练和竞赛，以此来提升自己的能力。FlyAI是为AI开发者提供数据竞赛并支持GPU离线训练的一站式服务平台。每周免费提供项目开源算法样例，支持算法能力变现…</div></div><div class="bookmark-href"><img src="https://static.zhihu.com/heifetz/assets/apple-touch-icon-152.81060cab.png" class="icon bookmark-icon"/>https://zhuanlan.zhihu.com/p/187345192</div></div><img src="https://pic1.zhimg.com/v2-dc05b889eeea14c080fd7331bbf5aaaa_720w.jpg?source=172ae18b" class="bookmark-image"/></a></figure><p id="943784c7-28e6-4bc8-9495-2b2581bf6123" class="">4 最佳平方逼近<strong>-连续</strong></p><p id="180ca59c-8328-4306-ab34-4ed14ad5d8ac" class="">5 曲线的最小二乘拟合<strong>-离散</strong><div class="indented"><p id="231ddb80-a215-4e5f-b1d6-180068638039" class="">4和5这两块内容的本质是一样的，详见这里的介绍：</p></div></p><figure id="0a969d97-755c-45eb-ad14-316e8002859f"><a href="https://blog.csdn.net/zhuangjinhua/article/details/90341559#:~:text=%E9%80%9A%E8%BF%87%E6%9C%80%E4%BD%B3%E5%B9%B3%E6%96%B9%E9%80%BC%E8%BF%91%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%8C%E6%88%91%E4%BB%AC%E7%AE%97%E5%87%BAa0%3D0%EF%BC%8Ca1%3D3%2F5%EF%BC%8Ca2%3D0%E6%97%B6%EF%BC%8C%E5%9C%A8%E3%80%90-1%2C1%E3%80%91%E4%B8%8A%7C%7CS%2A-y%7C%7C%20%E3%80%82,%E4%BA%8E%E6%98%AF%EF%BC%8Cy%3D3%2F5x%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E8%A6%81%E6%B1%82%E7%9A%84%E6%9C%80%E4%BD%B3%E5%B9%B3%E6%96%B9%E9%80%BC%E8%BF%91%E3%80%82%20%E8%80%8C%7C%7CS%2A-y%7C%7C%20%E7%9A%84%E6%84%8F%E4%B9%89%E5%B0%B1%E6%98%AF%E4%BD%BF%E5%BE%97%EF%BC%8C%E5%9C%A8%E3%80%90-1%2C1%E3%80%91%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%89%80%E6%9C%89Li%EF%BC%8C%EF%BC%88i%E4%B8%BA%E6%97%A0%E7%A9%B7%E5%A4%A7%EF%BC%89%EF%BC%8C%CE%A3Li%5E2%E6%9C%80%E5%B0%8F" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">最小二乘法与最佳平方逼近（简单版+例子）_村里最好的JAVA程序员的博客-CSDN博客_最小二乘法简单例题</div><div class="bookmark-description">文章内容本文主要介绍最小二乘法和最佳平方逼近的算法思想，并没有进行严格的数学证明和数学推导。如果仅仅是想要了解该算法的大致思路，那么本文非常适合你。最小二乘法和最佳平方逼近可以说是一回事，最小二乘法主要用于离散型变量，而最佳平方逼近用于的是连续型变量。目的都是一样，为了用一个新的函数“近似”模拟出原本的数值。离散型：如x={1,2,3,4,5,}变量是可以穷举的，也就是有限个。...</div></div><div class="bookmark-href"><img src="https://g.csdnimg.cn/static/logo/favicon32.ico" class="icon bookmark-icon"/>https://blog.csdn.net/zhuangjinhua/article/details/90341559#:~:text=%E9%80%9A%E8%BF%87%E6%9C%80%E4%BD%B3%E5%B9%B3%E6%96%B9%E9%80%BC%E8%BF%91%E7%9A%84%E7%AE%97%E6%B3%95%EF%BC%8C%E6%88%91%E4%BB%AC%E7%AE%97%E5%87%BAa0%3D0%EF%BC%8Ca1%3D3%2F5%EF%BC%8Ca2%3D0%E6%97%B6%EF%BC%8C%E5%9C%A8%E3%80%90-1%2C1%E3%80%91%E4%B8%8A%7C%7CS%2A-y%7C%7C%20%E3%80%82,%E4%BA%8E%E6%98%AF%EF%BC%8Cy%3D3%2F5x%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E8%A6%81%E6%B1%82%E7%9A%84%E6%9C%80%E4%BD%B3%E5%B9%B3%E6%96%B9%E9%80%BC%E8%BF%91%E3%80%82%20%E8%80%8C%7C%7CS%2A-y%7C%7C%20%E7%9A%84%E6%84%8F%E4%B9%89%E5%B0%B1%E6%98%AF%E4%BD%BF%E5%BE%97%EF%BC%8C%E5%9C%A8%E3%80%90-1%2C1%E3%80%91%E4%B8%8A%E9%9D%A2%E7%9A%84%E6%89%80%E6%9C%89Li%EF%BC%8C%EF%BC%88i%E4%B8%BA%E6%97%A0%E7%A9%B7%E5%A4%A7%EF%BC%89%EF%BC%8C%CE%A3Li%5E2%E6%9C%80%E5%B0%8F</div></div></a></figure><p id="b666c48b-b7a9-4919-af31-8911efcf53b2" class="">理解完以后，看看这几道例题</p><figure id="18989672-5d10-4250-a8ee-26577c9d3674"><a href="https://www.bilibili.com/video/BV13G4y1G7nn/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成3  函数逼近_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 10361、弹幕量 27、点赞数 106、投硬币枚数 34、收藏人数 184、转发人数 88, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成2  插值法，数值分析期末速成4  数值积分，数值分析期末速成1 绝对误差、相对误差与有效数字，数值分析期末速成5  解线性方程组的直接解法，数值分析期末速成7  解非线性方程的迭代法，数值分析期末速成6  解线性方程组的迭代法 (1)，《数值分析》期末考前速成 主讲人：苑长（1小时至少提高30分），讲了半天，一个问题给腿姐干蒙了，数值分析期末速成8  求矩阵特征值的方法，数值分析|雅可比和高斯迭代|期末干货|期末突击</div></div><div class="bookmark-href"><img src="https://www.notion.so//i0.hdslb.com/bfs/archive/03d4a6788c186a8ec7ca7d3e7762e28cb1a2a66d.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV13G4y1G7nn/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i0.hdslb.com/bfs/archive/03d4a6788c186a8ec7ca7d3e7762e28cb1a2a66d.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="75c591a4-e195-47f7-932a-697c3b2998ae" class="">笔记：</p><figure id="dcfa5efe-3a87-41e3-9025-6668facae9a9"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21441501&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.14" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21441501&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.14</div></div></a></figure><h1 id="7220159a-64c6-443d-a8c7-cd4f7b584433" class="">4 数值积分（要记）</h1><figure id="e13fb8b4-5218-4987-bdcf-0a541305f9e8"><a href="https://www.bilibili.com/video/BV1DG4y197wc/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成4  数值积分_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 9102、弹幕量 42、点赞数 114、投硬币枚数 39、收藏人数 145、转发人数 53, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成5  解线性方程组的直接解法，数值分析期末速成1 绝对误差、相对误差与有效数字，【5小时套路数值分析】基础 · 期末考试讲解（或许已完结），数值分析期末速成2  插值法，回家考研，结果对男人上头了，数值分析期末速成7  解非线性方程的迭代法，【数值分析】矩阵LU三角分解| 速成讲解 考试宝典，数值分析期末速成3  函数逼近，【数值分析】轻松理解龙格-库塔方法｜考前必看｜简单易懂，【数值分析】速成！雅可比迭代｜高斯赛德尔迭代</div></div><div class="bookmark-href"><img src="https://www.notion.so//i2.hdslb.com/bfs/archive/1b4776863caefd2bcf3a2a88ae816cd50dbfc144.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1DG4y197wc/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i2.hdslb.com/bfs/archive/1b4776863caefd2bcf3a2a88ae816cd50dbfc144.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="82a04b34-945b-4217-9231-e5037f574111" class="">1 求积公式的基本概念（5‘</p><p id="0f75ab76-9236-41c4-837c-8fd5ba520272" class="">本质上就是拆分、近似、求和的过程，类似于积分。</p><figure id="72101a9a-00c0-4807-b8d3-b43c998f888d" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%203.png"><img style="width:1492px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%203.png"/></a></figure><figure id="90b834a6-2c7a-4bea-82e8-6917b33ffaa9" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%204.png"><img style="width:1488px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%204.png"/></a></figure><p id="392b3551-6b63-4d0c-a448-71eb267e7fbb" class="">2 代数精度（重要10’</p><figure id="dd635ff9-ca11-4f9a-a25b-c6fc6173e1d0" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%205.png"><img style="width:1494px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%205.png"/></a></figure><p id="52c68a06-1c91-4afb-8a43-59ef6e894fd5" class="">最重要是要知道，f（x）取x0，x1，x2 …代入求积公式</p><figure id="e3e4225a-6bed-4d2c-afeb-38e022cd6395" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%206.png"><img style="width:1470px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%206.png"/></a></figure><p id="27757d84-dcad-49ff-a080-401f7d625c07" class="">3 插值型求积公式（10‘</p><figure id="8e94294a-9613-4644-8775-ffc6cdda3470" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%207.png"><img style="width:1495px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%207.png"/></a></figure><p id="505cd90d-2463-43f4-afa9-3014a3714ab1" class="">有余项要记，有点难记</p><figure id="c66cc30c-3572-46fa-8129-f42c78bd12b1" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%208.png"><img style="width:1496px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%208.png"/></a></figure><figure id="a3a1b656-0317-4129-901e-de6ca17b088f" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%209.png"><img style="width:1500px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%209.png"/></a></figure><p id="9dbe7c12-2976-4435-b333-15fa10a4e852" class="">4 高斯型求积公式（重要10’</p><figure id="4df73a1b-bc43-4782-9a4b-ad8c3b26ceff" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2010.png"><img style="width:1457px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2010.png"/></a></figure><figure id="f222408d-a2e9-4bfb-a084-e33caf2b838e" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2011.png"><img style="width:1474px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2011.png"/></a></figure><figure id="5158cae0-3ed3-429f-b074-cb8726cd9b79" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2012.png"><img style="width:935px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2012.png"/></a></figure><p id="62f56f6f-300a-4265-a71b-dce95435c3d5" class="">有递推公式要记，有点难记</p><figure id="08e1c577-45d2-409d-aa5d-eefaf92f3412" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2013.png"><img style="width:1501px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2013.png"/></a></figure><figure id="800a13aa-8b5d-414a-a5ec-49f909fbc996" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2014.png"><img style="width:1482px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2014.png"/></a></figure><h1 id="8c62ddcd-9b71-4f8c-8e68-7ce8d919ca70" class="">5 解线性方程组的直接解法</h1><figure id="313a455d-43d0-4414-8975-b0d56fab07a6"><a href="https://www.bilibili.com/video/BV1EP4y197LG/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成5  解线性方程组的直接解法_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 7617、弹幕量 35、点赞数 80、投硬币枚数 25、收藏人数 145、转发人数 39, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成6  解线性方程组的迭代法 (1)，我 可 太 喜 欢 期 末 周 了！，当你查到成绩低到离谱，数值分析期末速成7  解非线性方程的迭代法，数值分析期末速成1 绝对误差、相对误差与有效数字，数值分析期末速成8  求矩阵特征值的方法，数值分析期末速成4  数值积分，数值分析期末速成2  插值法，数值分析，LU分解法/Doolittle分解法解，线性方程组的直接法，【数值分析】速成牛顿迭代法｜考试宝典｜一定能听懂！！</div></div><div class="bookmark-href"><img src="https://www.notion.so//i2.hdslb.com/bfs/archive/1c73a33a001f1d6903fbd5ab67fea18562db3807.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1EP4y197LG/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i2.hdslb.com/bfs/archive/1c73a33a001f1d6903fbd5ab67fea18562db3807.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="6cbce9aa-d1cb-4ae4-b7da-8d7da046d31a" class="">笔记：</p><figure id="3917783e-21e1-44b5-9c4b-6165852919b1"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21412114&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.21" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21412114&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.21</div></div></a></figure><p id="6bc7049f-580f-4bfb-8aab-9a4d8b894f9b" class="">1 列主元消去法（10‘</p><p id="908adae0-e4a6-41ef-81ca-f457cc04fa98" class="">即大的往下消，带来一堆分数麻烦得很，但这样更准确。用于弥补“高斯消去法”当数量庞大时造成的误差。</p><p id="79053b8d-8b24-4c7d-b742-f4162b855b3d" class="">2 三角解法（10‘，最重要，也叫Doolittle解法，或者LU解法</p><p id="f9dcfc26-8434-4a6b-b278-c4abee5534a6" class="">3 矩阵的范数与条件数（5‘</p><p id="679dfec5-ade8-475c-85cd-2ec115aa219d" class="">无穷、1、2</p><h1 id="59e72e9d-32d1-41c0-bb62-840f106ca4d8" class="">6 解线性方程组的迭代法（要记）</h1><figure id="114ac5ed-443b-4d80-b172-e09581934a68"><a href="https://www.bilibili.com/video/BV13M411679Y/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成6  解线性方程组的迭代法 (1)_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 6122、弹幕量 4、点赞数 50、投硬币枚数 22、收藏人数 74、转发人数 31, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成5  解线性方程组的直接解法，数值分析期末速成7  解非线性方程的迭代法，数值分析期末速成8  求矩阵特征值的方法，数值分析期末速成2  插值法，数值分析期末速成1 绝对误差、相对误差与有效数字，东北大学-数值分析期末复习-真题解析08-09，第六章 迭代法(只用记住高斯和雅可比迭代，超松弛不用记)，数值分析期末速成3  函数逼近，数值分析速通-期末自救知识点与例题，数值分析|雅可比和高斯迭代|期末干货|期末突击</div></div><div class="bookmark-href"><img src="https://www.notion.so//i0.hdslb.com/bfs/archive/e49eae1567cd336e7fcf90dc4eaa04f5b8abf6aa.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV13M411679Y/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i0.hdslb.com/bfs/archive/e49eae1567cd336e7fcf90dc4eaa04f5b8abf6aa.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="e60f5fbf-d71e-47b6-89e9-72fd7fa5dd74" class="">笔记：</p><figure id="22d142d2-fd66-429b-9687-2fbd5505739c"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21415128&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.10" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21415128&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.10</div></div></a></figure><p id="4b8d9123-3b5d-4b4d-b3e4-2dcfdb767ceb" class="">1 基本迭代法（10’<div class="indented"><p id="b664807a-63ee-442a-ab11-f0f2f2bd6854" class="">雅可比迭代法</p><p id="31085fe1-c414-4fcf-a3a1-3a8abe791df5" class="">高斯赛德尔迭代法</p><p id="a07d5f53-ece3-419e-88b2-38dff0a6ddbc" class="">超松弛迭代法</p><figure id="f83a6dac-2df7-45e2-80e5-637b1493509a" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2015.png"><img style="width:1050px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2015.png"/></a></figure><p id="88ea248d-7a72-4c96-8db3-07058d537b34" class="">迭代法的构造要记，有点难记</p><figure id="c70ac4d3-009d-412d-b7b1-19dd8fbc544d" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2016.png"><img style="width:1046px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2016.png"/></a></figure></div></p><p id="9527ae6b-7166-426b-80cd-e80bc61cbbde" class=""> 2 迭代的收敛性（10‘</p><figure id="1bbb7ea7-9740-491a-854b-ed357039c4f7" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2017.png"><img style="width:1060px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2017.png"/></a></figure><figure id="e073ac55-b16f-4bd6-9382-8ed647cc5ad4" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2018.png"><img style="width:1064px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2018.png"/></a></figure><h1 id="745c0441-0cfa-40e1-a7b9-ade19491f8d4" class="">7 解非线性方程的迭代法</h1><figure id="b27acb05-2ae5-4958-8e74-cb753e53fcc5"><a href="https://www.bilibili.com/video/BV1ER4y1y7aT/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成7  解非线性方程的迭代法_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 6468、弹幕量 21、点赞数 65、投硬币枚数 21、收藏人数 141、转发人数 30, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：数值分析期末速成8  求矩阵特征值的方法，【数值分析】牛顿迭代法——求解非线性方程，数值分析期末速成6  解线性方程组的迭代法 (1)，【5小时套路数值分析】基础 · 期末考试讲解（或许已完结），数值分析期末速成1 绝对误差、相对误差与有效数字，数值分析期末速成5  解线性方程组的直接解法，数值分析期末速成2  插值法，数值分析第七章（不动点迭代法，局部收敛，收敛阶），数值分析期末速成4  数值积分，数值分析 第七章 二分法 非线性方程迭代（不动点迭代法） 考前复习 简单理解</div></div><div class="bookmark-href"><img src="https://www.notion.so//i1.hdslb.com/bfs/archive/430b161d81ae923c228e9c01ef0d510a25050f12.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1ER4y1y7aT/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i1.hdslb.com/bfs/archive/430b161d81ae923c228e9c01ef0d510a25050f12.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="2a3c7795-adda-404f-97d8-380ea9270910" class="">笔记：</p><figure id="38ffbb81-bd42-4c65-8aa1-ac49a141a378"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21434833&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.52" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21434833&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.52</div></div></a></figure><p id="751ce1cd-890c-4e9f-899c-b6f13a6eec10" class="">1 二分法 （1-2’</p><p id="1ce9e066-b2de-45ca-a179-08fb1d53042a" class="">2 迭代法收敛定理（10‘，证明题</p><figure id="37d042a5-d42a-4aa8-b481-4e87e5599150" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2019.png"><img style="width:1499px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2019.png"/></a></figure><p id="d80f6055-9075-40c8-a7b4-7ba86d2a955f" class="">3 牛顿法（10’</p><p id="d02da8f1-b2e2-4a1b-97c5-54272a724271" class="">主要讲迭代怎么构造</p><figure id="a9596f86-d3cc-405f-b56e-2c08ee0affe6" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2020.png"><img style="width:952px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2020.png"/></a></figure><h1 id="8e6b3325-a922-4ba7-967b-c22a882c4427" class="">8 求矩阵特征值的方法</h1><p id="1a2fd271-922f-4b19-8c53-3d6615987b4a" class="">这一章主要是讲幂法和反幂法，但无论是李的这本书还是上面那个up的视频，都没能讲明白幂法和反幂法的真正作用和意义，后来我找到了这个，结合matlab，讲得非常好：</p><figure id="913b259f-f778-4689-aa76-4636783743ef"><a href="https://www.bilibili.com/video/BV1ii4y147v8/?spm_id_from=333.337.search-card.all.click&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析8(幂法实现和Rayleigh商反幂法)苏州大学_哔哩哔哩_bilibili</div><div class="bookmark-description">数值分析8(幂法实现和Rayleigh商反幂法)苏州大学, 视频播放量 4489、弹幕量 1、点赞数 36、投硬币枚数 37、收藏人数 63、转发人数 12, 视频作者 zynsuda, 作者简介 ，相关视频：求矩阵极端特征值的幂法与反幂法，8.2幂法，分部积分法升级为表格法 指三幂对反，数值分析7(1二分法和简单迭代)苏州大学，8.2反幂法，华北理工大学：数值计算方法37幂法及降幂法，数值计算方法  数值分析 计算方法，数值分析2020春苏州大学，模拟瑞利-泰勒（Rayleigh–Taylor）不稳定现象，东南大学数值分析</div></div><div class="bookmark-href"><img src="https://www.notion.so//i2.hdslb.com/bfs/archive/b62eb65063aa9865dca54165084c27d5462ebe94.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1ii4y147v8/?spm_id_from=333.337.search-card.all.click&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i2.hdslb.com/bfs/archive/b62eb65063aa9865dca54165084c27d5462ebe94.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="ac023524-14cd-4508-9474-3b29d8896db8" class="">听完应该能非常完整的认识幂法了，如果您时间充足的话（或者考完试以后），建议听完up讲的整个数值分析的课程。内容有点长，但我相信受益匪浅。</p><p id="01a6f763-c0e9-4430-99e3-e36afcdca51d" class="">另外回到考试部分，继续看下面的视频，应该足够完成考试里面对这部分的考察：（也可能没啥用，先放着）</p><figure id="fa6e6346-f36a-4871-a70a-7e88f627d65c"><a href="https://www.bilibili.com/video/BV1eP411T7iD/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">数值分析期末速成8  求矩阵特征值的方法_哔哩哔哩_bilibili</div><div class="bookmark-description">网络, 视频播放量 5478、弹幕量 8、点赞数 65、投硬币枚数 22、收藏人数 116、转发人数 37, 视频作者 我看看谁在卷, 作者简介 机械工程   硕士，相关视频：期末考试，数值分析，幂法，反幂法，当你查到成绩低到离谱，【数值分析】6.矩阵的QR分解householder分解、幂法求解特征值特征向量知识点总结及例题讲解，数值分析 范数与条件数 期末干货   期末突击，数值分析期末速成2  插值法，数值分析|雅可比和高斯迭代|期末干货|期末突击，如何用计算器求矩阵特征值？【乘幂法】，【技巧篇】之快速求解三阶矩阵特征值 (进阶版)，【数值分析】最小二乘法速成|你一定能听懂！！，【数值分析】轻松理解龙格-库塔方法｜考前必看｜简单易懂</div></div><div class="bookmark-href"><img src="https://www.notion.so//i2.hdslb.com/bfs/archive/4a054e1d64bd7fb37966168f94aff72a39ac3c28.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1eP411T7iD/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i2.hdslb.com/bfs/archive/4a054e1d64bd7fb37966168f94aff72a39ac3c28.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="aaa97fdb-5d87-4e8a-b44f-203c2552a3fb" class="">笔记：</p><figure id="42dc093d-e5f3-454e-b191-620b91d4d5f4"><a href="https://www.bilibili.com/h5/note-app/view?cvid=21415634&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.13" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">笔记</div></div><div class="bookmark-href"><img src="https://www.bilibili.com/favicon.ico" class="icon bookmark-icon"/>https://www.bilibili.com/h5/note-app/view?cvid=21415634&amp;pagefrom=comment&amp;richtext=true&amp;spm_id_from=333.788.b_636f6d6d656e74.13</div></div></a></figure><p id="3f2fd950-e917-43c8-aa6e-f852d990f2de" class="">1 幂法（10‘</p><figure id="3d7948f7-f5b3-4980-83a7-c5e42d1e16ae" class="image"><a href="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2021.png"><img style="width:947px" src="note_Numerrical%20Analysis%20%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%209c6e93b4f61b4e1f8028ad82e3b87ca3/Untitled%2021.png"/></a></figure><p id="db7354f1-8eba-4db7-824c-46a526d59aa4" class="">2 反幂法（10‘</p><p id="b4fbb4fe-1d18-4202-b421-fa339d097e3b" class="">反幂法其实是幂法的应用罢了。</p><h1 id="cc557136-d078-41d4-bf60-042d8b881abd" class="">9 常微分方程初值问题数值解法</h1><p id="c4786986-75bb-440b-8365-df04b94f9b62" class="">这几个视频也很简短，但小姐姐讲得非常好，基本把欧拉法的思想都讲明白了</p><figure id="18895fbc-2832-44d4-b718-09ca65bdb94c"><a href="https://www.bilibili.com/video/BV1v3411b7DK/?spm_id_from=333.788&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【数值分析】轻松掌握欧拉法｜考试宝典｜简单易懂_哔哩哔哩_bilibili</div><div class="bookmark-description">-, 视频播放量 45889、弹幕量 146、点赞数 1180、投硬币枚数 803、收藏人数 715、转发人数 332, 视频作者 小西小西日记, 作者简介 vb同名 立志要做数学区up的小菜鸡  ，相关视频：数值分析27-常微分方程数值解：Euler法、梯形公式、改进的Euler法（例题），【数值分析】轻松掌握梯形法改进欧拉法｜考试宝典｜速成，【数值分析】十分钟讲解欧拉法、后退欧拉法、梯形法和改进欧拉公式，记不住算我输，9.2改进的欧拉法.mp4，【数值分析】速成牛顿迭代法｜考试宝典｜一定能听懂！！，【数值分析】轻松理解龙格-库塔方法｜考前必看｜简单易懂，欧拉法，9计算物理- 欧拉法求常微分方程的数值解，数值分析期末速成1 绝对误差、相对误差与有效数字，【数值分析】矩阵LU三角分解| 速成讲解 考试宝典</div></div><div class="bookmark-href"><img src="https://www.notion.so//i1.hdslb.com/bfs/archive/5211675caf3a88c94d6b7310e044c7b54c1d60e0.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1v3411b7DK/?spm_id_from=333.788&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i1.hdslb.com/bfs/archive/5211675caf3a88c94d6b7310e044c7b54c1d60e0.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><figure id="a24de82c-f9a2-432f-9655-c0d017b50959"><a href="https://www.bilibili.com/video/BV12r4y1Q7Ae/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【数值分析】轻松掌握梯形法改进欧拉法｜考试宝典｜速成_哔哩哔哩_bilibili</div><div class="bookmark-description">感谢大家的观看，欢迎关注点赞投币收藏~谢谢！, 视频播放量 35440、弹幕量 178、点赞数 1338、投硬币枚数 1010、收藏人数 582、转发人数 205, 视频作者 小西小西日记, 作者简介 vb同名 立志要做数学区up的小菜鸡  ，相关视频：数值分析27-常微分方程数值解：Euler法、梯形公式、改进的Euler法（例题），【数值分析】轻松理解龙格-库塔方法｜考前必看｜简单易懂，【数值分析】轻松掌握欧拉法｜考试宝典｜简单易懂，【数值分析】速成牛顿迭代法｜考试宝典｜一定能听懂！！，【数值计算方法】欧拉法，改进欧拉法和龙哥库塔法，6min速成！完结撒花！！！，【数值分析】十分钟讲解欧拉法、后退欧拉法、梯形法和改进欧拉公式，记不住算我输，【数值分析】矩阵LU三角分解| 速成讲解 考试宝典，汤家凤 遇到不会的题怎么办？，期末考试 数值分析 Romberg 龙贝格，数值分析，四阶龙格库塔公式（四阶RK）</div></div><div class="bookmark-href"><img src="https://www.notion.so//i1.hdslb.com/bfs/archive/5c2f9358a4a8719a7299346ddf5858a8a811927e.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV12r4y1Q7Ae/?spm_id_from=333.999.0.0&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i1.hdslb.com/bfs/archive/5c2f9358a4a8719a7299346ddf5858a8a811927e.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><figure id="38abdebe-9db6-488b-b203-6e352be5538c"><a href="https://www.bilibili.com/video/BV1rF41187YM/?spm_id_from=333.788&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">【数值分析】轻松理解龙格-库塔方法｜考前必看｜简单易懂_哔哩哔哩_bilibili</div><div class="bookmark-description">家人们，喜欢的话欢迎给个三连～感谢大家！, 视频播放量 42017、弹幕量 197、点赞数 1469、投硬币枚数 1022、收藏人数 898、转发人数 262, 视频作者 小西小西日记, 作者简介 vb同名 立志要做数学区up的小菜鸡  ，相关视频：数值分析，四阶龙格库塔公式（四阶RK），【数值计算方法】欧拉法，改进欧拉法和龙哥库塔法，6min速成！完结撒花！！！，《数值分析》期末考前速成 主讲人：苑长（1小时至少提高30分），9-3四阶龙格-库塔方程—数值分析（计算方法）-期末考试复习自用，【数值分析】速成牛顿迭代法｜考试宝典｜一定能听懂！！，数值分析常微分方程的数值解，Euler方法龙格法部分理论＋例题，从理论到应用，包会包过!，【数值分析】轻松掌握梯形法改进欧拉法｜考试宝典｜速成，【数值分析】牛顿迭代法——求解非线性方程，数值分析速成，一种超简单快速的LU分解法，我不会是最后一个知道的吧？呜呜</div></div><div class="bookmark-href"><img src="https://www.notion.so//i0.hdslb.com/bfs/archive/8d897558909f5302c922980ea2aa824f73644be7.jpg@100w_100h_1c.png@57w_57h_1c.png" class="icon bookmark-icon"/>https://www.bilibili.com/video/BV1rF41187YM/?spm_id_from=333.788&amp;vd_source=6fbc7b5060a9c19ab63d6de7c8f1eaf1</div></div><img src="https://i0.hdslb.com/bfs/archive/8d897558909f5302c922980ea2aa824f73644be7.jpg@100w_100h_1c.png" class="bookmark-image"/></a></figure><p id="40298c6c-21de-4d48-a017-15bfaebc8b70" class="">
+</p><p id="f444b18a-9335-4239-981e-db41e2f00d12" class="">
+</p><p id="c8f09d2b-39fa-4f21-867a-8e35e675980e" class="">
+</p></div></article></body></html>
